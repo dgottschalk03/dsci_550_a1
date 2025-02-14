@@ -4,7 +4,13 @@
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
 
-Analysis of the Haunted Places Dataset as part of Assignment 1 for DSCI_550 SP_25
+Analysis of the Haunted Places Dataset. Assignment 1 for DSCI_550 SP 25. 
+
+Due | 3-14-2025
+
+    
+
+
 
 ## Project Organization
 
@@ -58,4 +64,12 @@ Analysis of the Haunted Places Dataset as part of Assignment 1 for DSCI_550 SP_2
 ```
 
 --------
+
+## Group Members
+* Daniel Gottschalk
+* Reha Matai
+* Serafina Smith
+* Mikena Moore
+* Kate Mathew
+
 
