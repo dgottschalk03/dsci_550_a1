@@ -21,26 +21,35 @@ Name of notebooks have 3 parts:
     0.01-pjb-data-source-1.ipynb
 
 ### 0.01 - Phase.Notebook
-Phase is the phase of the analysis
-NOTEBOOK is just the Nth notebook in that phase to be created.
+- 'Phase':  The phase of the analysis
+- 'NOTEBOOK': The Nth notebook in that phase to be created.
 
-Project Phases:
-    0 - Data exploration 
-    1 - Haunted feature creation {Audio Evidence, Visual/Video Evidence , Haunted Places Date, Haunted Places Witness Count, Aparition Type, Event Type, Time of Day} 
-    2 - Joining Datasets:
-        * [Alcohol_Dataset](https://drugabusestatistics.org/alcohol-abuse-statistics/)
-        * [Daylight_Dataset_Timeanddate](https://www.timeanddate.com/astronomy/usa)
-        * [Daylight_Dataset_Navy](https://aa.usno.navy.mil/data/Dur_OneYear)
-        * [Custom_Dataset_1]
-        * [Custom_Dataset_2]
-        * [Custom_Dataset_3]
-    3 - Visualizations - often writes publication-ready viz to reports
-    4 - Modeling/Inference - training machine learning models
-    5 - Publication - Notebooks that get turned directly into reports
+#### **Project Phases**
+1. **0 - Data Exploration**
+2. **1 - Haunted Feature Creation**
+    Features from Assignment:
+        - Audio Evidence | Tool Used
+        - Visual/Video Evidence | Tool Used
+        - Haunted Places Date | Tool Used
+        - Haunted Places Witness Count | Tool Used
+        - Aparition Type | Tool Used
+        - Event Type | Tool Used
+        - Time of Day | Tool Used
+3. **2 - Joining Datasets**
+    - [Alcohol_Dataset](https://drugabusestatistics.org/alcohol-abuse-statistics/)
+    - [Daylight_Dataset_Timeanddate](https://www.timeanddate.com/astronomy/usa) 
+    - [Daylight_Dataset_Navy](https://aa.usno.navy.mil/data/Dur_OneYear)
+    - [Custom_Dataset_1]
+    - [Custom_Dataset_2]
+    - [Custom_Dataset_3]
+4. **3 - Visualizations**
+5. **4- Modeling/Inference**
+6. **5- Publication**
 
-### pjb 
-Initials of Coder; this is helpful for knowing who created the notebook and prevents collisions from people working in the same notebook.
+### **pjb** (Initials of Coder)
+    Ensures authors get credit. Prevents collisions in coding as well.
 
 ### data-description
-    data - dataset used
-    description - what notebook does
+All descriptions written in snake_case
+- 'data': Dataset Used
+- 'description': Purpose of Notebook
