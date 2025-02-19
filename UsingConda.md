@@ -30,13 +30,13 @@ Name of notebooks have 3 parts:
 0. **Data Exploration**
 1. **Haunted Feature Creation**
     Features from Assignment:
-        - Audio Evidence | Tool Used
-        - Visual/Video Evidence | Tool Used
-        - Haunted Places Date | Tool Used
-        - Haunted Places Witness Count | Tool Used
-        - Aparition Type | Tool Used
-        - Event Type | Tool Used
-        - Time of Day | Tool Used
+    - Audio Evidence | *1.01-dg*
+    - Visual/Video Evidence | *1.02-dg*
+    - Haunted Places Date | *1.03-dg*
+    - Haunted Places Witness Count | *1.04-dg*
+    - Aparition Type | *notebook*
+    - Event Type | *notebook*
+    - Time of Day | *notebook*
 2. **Joining Datasets**
     - [Alcohol_Dataset](https://drugabusestatistics.org/alcohol-abuse-statistics/)
     - [Daylight_Dataset_Timeanddate](https://www.timeanddate.com/astronomy/usa) 
