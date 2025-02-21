@@ -1,4 +1,11 @@
+# Ignore all CSV and TSV files in "data" and its subfolders
+data/**/*.csv
+data/**/*.tsv
+data/**/*.tab
 
+# Keep Keywords subfolder and raw data
+!data/keywords/
+!data/raw/haunted_places.tab
 # Mac OS-specific storage files
 .DS_Store
 
