@@ -1,7 +1,1 @@
-ghost, spirit, phantom
-male ghost, man ghost, male apparition
-female ghost, woman ghost, lady spirit
-child ghost, boy spirit, girl ghost, young apparition
-orb, floating light
-ufo, unidentified flying object, uap
-demon, evil presence, dark entity
+ghost, spirit, phantom, male ghost, man ghost, male apparition, female ghost, woman ghost, lady spirit, child ghost, boy spirit, girl ghost, young apparition, orb, floating light, ufo, unidentified flying object, uap, demon, evil presence, dark entity
