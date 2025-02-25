@@ -9,15 +9,16 @@ def extractSequences(tokens : list[str], sepChar: str) -> list[list[str]]:
     '''
     Sequences = []
     currentSequence = []
-
+    
     for token in tokens:
         # Check for Punctuation #
-        if token == '.':
+        if token == sepChar:
         # Append Sentence to Res and Reset CurrentSequence #
             currentSequence.append(token)
             Sequences.append(currentSequence)
             currentSequence = []
         else:
             currentSequence.append(token)
-
+    if currentSequence != []:
+        Sequences.append(currentSequence)
     return Sequences

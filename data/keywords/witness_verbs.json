@@ -44,11 +44,6 @@
         "eavesdrop"
     ],
     "Misc": [
-        "witnessed",
-        "reported",
-        "reports",
-        "documents",
-        "documented",
         "caught",
         "catch",
         "detect",
@@ -56,14 +51,31 @@
         "perceive",
         "perceived",
         "perceives",
-        "sense",
-        "sensed",
         "felt",
         "feeling",
         "feel",
         "feels",
         "sense",
         "sensed",
-        "sensing"
+        "sensing",
+        "captured"
+    ],
+    "Verbal": [
+        "witnessed",
+        "witness",
+        "witnessing",
+        "said",
+        "says",
+        "say",
+        "saying",
+        "reported",
+        "reports",
+        "reporting",
+        "documents",
+        "documented",
+        "accounts",
+        "accounted",
+        "swears",
+        "swear"
     ]
 }

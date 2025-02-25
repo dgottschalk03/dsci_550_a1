@@ -1,5 +1,5 @@
 {
-    "Singular": {
+    "singular": {
         "Relations": [
             "Others",
             "couple",
@@ -62,9 +62,7 @@
             "patron",
             "occupant",
             "visitor",
-            "folk",
-            "trustee",
-            "tennant"
+            "folk"
         ],
         "Religious": [
             "Nun",
@@ -86,17 +84,14 @@
             "manager",
             "founder",
             "master",
-            "sheriff",
-            "president",
-            "landlord"
+            "sheriff"
         ],
         "Workers": [
             "Staff",
             "employee",
             "janitor",
             "crew",
-            "faculty",
-            "bartender"
+            "faculty"
         ],
         "Prison": [
             "Inmate",
@@ -110,7 +105,7 @@
             "inmate"
         ]
     },
-    "Plural": {
+    "plural": {
         "Relations": [
             "couples",
             "group",
@@ -154,7 +149,6 @@
         ],
         "Residential": [
             "people",
-            "peoples",
             "owners",
             "residents",
             "guests",
@@ -164,10 +158,7 @@
             "patrons",
             "occupants",
             "visitors",
-            "folks",
-            "trustees",
-            "tennants",
-            "landlords"
+            "folks"
         ],
         "Religious": [
             "nuns",
@@ -187,14 +178,12 @@
             "managers",
             "founders",
             "masters",
-            "sheriffs",
-            "presidents"
+            "sheriffs"
         ],
         "Workers": [
             "employees",
             "janitors",
-            "crews",
-            "bartenders"
+            "crews"
         ],
         "Prison": [
             "inmates",
