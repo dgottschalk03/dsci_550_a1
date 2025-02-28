@@ -204,10 +204,14 @@ dependencies:
   - pip:
       - click==8.1.8
       - datefinder==0.7.3
+      - geopandas==1.0.1
       - narwhals==1.28.0
       - nltk==3.9.1
       - number-parser==0.3.2
       - plotly==6.0.0
+      - pyogrio==0.10.0
+      - pyproj==3.7.1
       - regex==2024.11.6
+      - shapely==2.0.7
       - tika==2.6.0
 prefix: /Users/dgottschalk/miniconda3
