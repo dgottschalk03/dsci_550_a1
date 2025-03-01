@@ -7,7 +7,7 @@
     outfile = "../data/processed/haunted_places_features_added.tab"
 
     # Reading CSV
-    df = pd.read_csv("../data/processed/haunted_places_cleaned.tab", sep = "\t")
+    haunted_places_df = pd.read_csv("../data/processed/haunted_places_cleaned.tab", sep = "\t")
 
     # Feature Names
     feature_names = ["Audio_Evidence"]
@@ -25,12 +25,11 @@
         
         # If it exists, update values
         if feature in out_df.columns:
-            out_df[feature].update(df[feature].values)
-            out_df[feature] = df[feature].values
+            out_df[feature].update(haunted_places_df[feature].values)
 
         # If not add entire column
         else:
-            out_df[feature] = df[feature].values
+            out_df[feature] = haunted_places_df.loc[:,feature]
 
     out_df.to_csv(f"{outfile}", sep = "\t", index = False)
 
