@@ -11,7 +11,6 @@
 
     # Feature Names
     feature_names = ["Audio_Evidence"]
-    conda env create -f environment.yml
 
 ## Put this at the end of your program to save features added
     ## Save CSV ##
