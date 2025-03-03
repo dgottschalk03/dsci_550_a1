@@ -2,10 +2,16 @@
 data/**/*.csv
 data/**/*.tsv
 data/**/*.tab
-
+data/**/*.json 
+data/raw/tl_2024_us_county
+notebooks/3.02-dg-us_county-temp.ipynb
 # Keep Keywords subfolder and raw data
 !data/keywords/
 !data/raw/haunted_places.tab
+<<<<<<< HEAD
+=======
+!data/processed/haunted_places_features_added.tab
+>>>>>>> main
 # Mac OS-specific storage files
 .DS_Store
 

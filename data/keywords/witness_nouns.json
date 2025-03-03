@@ -1,0 +1,211 @@
+{
+    "Singular": {
+        "Relations": [
+            "Others",
+            "couple",
+            "Somebody",
+            "someone",
+            "friend",
+            "lover",
+            "boyfriend",
+            "girlfriend"
+        ],
+        "Male": [
+            "man",
+            "boy",
+            "guy",
+            "husband",
+            "father",
+            "son",
+            "brother",
+            "male",
+            "gentleman",
+            "dad"
+        ],
+        "Female": [
+            "lady",
+            "girl",
+            "woman",
+            "wife",
+            "mother",
+            "daughter",
+            "sister",
+            "female",
+            "mom"
+        ],
+        "Children": [
+            "child",
+            "baby",
+            "student",
+            "teenager",
+            "kid",
+            "orphan"
+        ],
+        "Parental": [
+            "Parent",
+            "caretaker"
+        ],
+        "Witness": [
+            "witness",
+            "submitter",
+            "patient",
+            "customer"
+        ],
+        "Residential": [
+            "person",
+            "owner",
+            "resident",
+            "guest",
+            "local",
+            "member",
+            "neighbor",
+            "patron",
+            "occupant",
+            "visitor",
+            "folk",
+            "trustee",
+            "tennant"
+        ],
+        "Religious": [
+            "Nun",
+            "priest"
+        ],
+        "Acting": [
+            "actor",
+            "actress",
+            "director"
+        ],
+        "Authority": [
+            "police",
+            "security",
+            "guard",
+            "security guard",
+            "soldier",
+            "teacher",
+            "officer",
+            "manager",
+            "founder",
+            "master",
+            "sheriff",
+            "president",
+            "landlord"
+        ],
+        "Workers": [
+            "Staff",
+            "employee",
+            "janitor",
+            "crew",
+            "faculty",
+            "bartender"
+        ],
+        "Prison": [
+            "Inmate",
+            "prisoner"
+        ],
+        "Misc": [
+            "Hunter",
+            "doctor",
+            "nurse",
+            "miner",
+            "inmate"
+        ]
+    },
+    "Plural": {
+        "Relations": [
+            "couples",
+            "group",
+            "groups",
+            "friends",
+            "lovers"
+        ],
+        "Male": [
+            "boys",
+            "guys",
+            "men",
+            "sons",
+            "brothers",
+            "males",
+            "gentlemen"
+        ],
+        "Female": [
+            "ladies",
+            "girls",
+            "women",
+            "daughters",
+            "sisters",
+            "females"
+        ],
+        "Children": [
+            "children",
+            "students",
+            "teens",
+            "teenagers",
+            "kids",
+            "orphans"
+        ],
+        "Parental": [
+            "parents",
+            "caretakers"
+        ],
+        "Witness": [
+            "Witnesses",
+            "patients",
+            "customers"
+        ],
+        "Residential": [
+            "people",
+            "peoples",
+            "owners",
+            "residents",
+            "guests",
+            "locals",
+            "members",
+            "neighbors",
+            "patrons",
+            "occupants",
+            "visitors",
+            "folks",
+            "trustees",
+            "tennants",
+            "landlords"
+        ],
+        "Religious": [
+            "nuns",
+            "priests"
+        ],
+        "Acting": [
+            "Actors",
+            "actresses",
+            "directors"
+        ],
+        "Authority": [
+            "policemen",
+            "guards",
+            "soldiers",
+            "teachers",
+            "officers",
+            "managers",
+            "founders",
+            "masters",
+            "sheriffs",
+            "presidents"
+        ],
+        "Workers": [
+            "employees",
+            "janitors",
+            "crews",
+            "bartenders"
+        ],
+        "Prison": [
+            "inmates",
+            "prisoners"
+        ],
+        "Misc": [
+            "hunters",
+            "doctors",
+            "nurses",
+            "miners",
+            "inmates"
+        ]
+    }
+}
