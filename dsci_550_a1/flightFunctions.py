@@ -69,7 +69,7 @@ def flight_trajectory(p1: [float, float], p2: [float, float], n : int) -> list[t
         [path]  - list of points in flight path. [latitude, longitude]
     '''
     ## Initialize Path ##
-    path = []
+    path = list()
 
     ## Unpack Longitude and Latitude ##
     lat1, long1 = p1 
