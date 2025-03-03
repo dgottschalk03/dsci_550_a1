@@ -9,6 +9,7 @@ notebooks/3.02-dg-us_county-temp.ipynb
 !data/keywords/
 !data/raw/haunted_places.tab
 !data/processed/haunted_places_features_added.tab
+!data/processed/haunted_places_cleaned.tab
 # Mac OS-specific storage files
 .DS_Store
 
