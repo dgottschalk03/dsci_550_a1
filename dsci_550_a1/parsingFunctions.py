@@ -53,7 +53,11 @@ def check_regex(text: str, regex: Pattern, *optional_regex : Pattern) -> tuple[b
     [True, ['I', 'store']]
     '''
     ## Compile regular expressions ##
-    patterns = [regex] + list(optional_regex)  
+    # Unpack pattern in case it is stored as tuple 
+    if isinstance(regex, tuple):
+        patterns = [p for p in regex] + list(optional_regex)  
+    else:
+        patterns = [regex] + list(optional_regex)
 
     ## Target number of regex matches ##
     target = len(patterns) - 1
