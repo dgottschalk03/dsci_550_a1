@@ -109,7 +109,7 @@ def extract_dates(text):
         3. Clean false positives
             - dates of the form [2025, 1, x] 
                 - These are stray quantifiers that datefinder thinks are numbers
-             - years < 1620 (landing at Plymouth Rock). These are likely 3 digit hotel rooms and other non-date objects.
+             - years < 1677 (landing at Plymouth Rock). These are likely 3 digit hotel rooms and other non-date objects.
                 - eg. {index: 3} = "In the 1970's, one room, **room 211** ..." -> datetime([211, 1, 1]).
     Args:
         text (str): The input text containing potential date references.
@@ -125,8 +125,8 @@ def extract_dates(text):
 
     ## Parse Using DateFinder ##
     # Remove Years < 1620 #
-    matched_dates = [date for date in datefinder.find_dates(text, base_date = datetime.datetime(2025, 1, 1)) 
-                    if isinstance(date, datetime.datetime) and 1492 <= date.year < 2026]
+    matched_dates = [date.date() for date in datefinder.find_dates(text, base_date = datetime.datetime(2025, 1, 1)) 
+                    if isinstance(date, datetime.datetime) and 1677 < date.year < 2026]
     datefinder_count = len(matched_dates)
 
 
@@ -155,7 +155,7 @@ def extract_dates(text):
 
     ## Add Regex to Matched_Dates **
     for year in matched_years:
-        matched_dates.append(datetime.datetime(int(year), 1, 1)) 
+        matched_dates.append(datetime.date(int(year), 1, 1)) 
 
     ## Remove Duplicates ##
     matched_dates = list(set(matched_dates))
@@ -165,7 +165,7 @@ def extract_dates(text):
 
     ## If No Dates Matched, Return [2025, 1, 1] ##
     if matched_dates == []:
-        matched_dates.append(datetime.datetime(2025, 1, 1))
+        matched_dates.append(datetime.date(2025, 1, 1))
 
     res = {
         "dates" : matched_dates,
@@ -188,6 +188,8 @@ def clean_dates(lst):
 
     '''
 
-    if (len(lst) > 1) and (datetime.datetime(2025,1,1) in lst):
+    if (len(lst) > 1) and (datetime.date(2025,1,1) in lst):
+        lst.remove(datetime.date(2025, 1, 1))
+    elif (len(lst) > 1) and (datetime.datetime(2025,1,1) in lst):
         lst.remove(datetime.datetime(2025, 1, 1))
     return lst

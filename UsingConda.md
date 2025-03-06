@@ -42,11 +42,11 @@ Name of notebooks have 3 parts:
     - [Daylight_Dataset_Timeanddate](https://www.timeanddate.com/astronomy/usa) 
     - [Daylight_Dataset_Navy](https://aa.usno.navy.mil/data/Dur_OneYear)
     - [flights_dataset](https://openflights.org/data.php#route)
-        - [airports](https://ourairports.com/data/)
+    - [airports](https://ourairports.com/data/)
     - [Custom_Dataset_2]
     - [Custom_Dataset_3]
 3. **Visualizations**
-4. **Modeling/Inference**
+4. **Clustering/Inference**
 5. **Publication**
 
 ### **pjb** (Initials of Coder)
