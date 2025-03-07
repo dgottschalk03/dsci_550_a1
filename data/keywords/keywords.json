@@ -510,7 +510,8 @@
                 "swears",
                 "swear"
             ]
-        },
+        }
+    },
         "Precompiled_Regex": {
             "Violence": [
                 "murder(?:ed|s)?",         
@@ -562,7 +563,7 @@
                 "landslide(?:s)?"          
             ]
         }
-        }
 }
+
 
 

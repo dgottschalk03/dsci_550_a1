@@ -204,6 +204,7 @@ dependencies:
   - pip:
       - click==8.1.8
       - datefinder==0.7.3
+      - editdistance==0.8.1
       - geopandas==1.0.1
       - narwhals==1.28.0
       - nltk==3.9.1
