@@ -9,6 +9,7 @@ notebooks/3.02-dg-us_county-temp.ipynb
 # Ignore git clones and clustering folder
 /clones
 /clustering
+data/tika_similarity
 
 #scripts
 /dsci_550_a1/staging_ground.py
