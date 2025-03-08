@@ -1,4 +1,4 @@
-name: base
+name: dsci_550_a1
 channels:
   - defaults
   - https://repo.anaconda.com/pkgs/main
@@ -215,4 +215,3 @@ dependencies:
       - regex==2024.11.6
       - shapely==2.0.7
       - tika==2.6.0
-prefix: /Users/dgottschalk/miniconda3

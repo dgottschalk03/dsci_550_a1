@@ -6,6 +6,12 @@ data/**/*.json
 data/raw/tl_2024_us_county
 notebooks/3.02-dg-us_county-temp.ipynb
 
+# Ignore git clones and clustering folder
+/clones
+/clustering
+
+#scripts
+/dsci_550_a1/staging_ground.py
 # Ignore HTMLs 
 **/*.html
 # Keep Keywords subfolder and raw data

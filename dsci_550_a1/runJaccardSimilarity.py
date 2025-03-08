@@ -5,8 +5,14 @@ import glob
 import subprocess
 import datetime
 import argparse
+import json
+import sys
 
-def main(input_dir, subset_dir, out_dir, num_files):
+def main(input_dir, subset_dir, out_dir, num_files, fields):
+
+    # Check if fields is empty
+    if fields == "[]":
+        sys.exit("Please Select at least one field to keep.")
 
     # Get all JSON files
     json_files = glob.glob(os.path.join(input_dir, "*.json"))
@@ -24,12 +30,23 @@ def main(input_dir, subset_dir, out_dir, num_files):
     for file in selected_files:
         dest_path = os.path.join(subset_dir, os.path.basename(file))
         shutil.copy(file, dest_path)
+        
+        # open copy and load data
+        with open(dest_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-    print(f"Created {len(selected_files)} symlinks in {subset_dir}")
+        # filter data and save back to copy
+        filtered_data = {key: data[key] for key in fields if key in data}
+        with open(dest_path, "w", encoding="utf-8") as f:
+            json.dump(filtered_data, f, indent=4)
+
+    # Remove unwanted fields from jsons #
+    
+    print("\n" + "-"*50 , f"\nCreated {len(selected_files)} json copies in {subset_dir}", "Now running './clones/**/jaccard_similarity.py'", sep = "\n")
 
     # Run jaccard_similarity.py on the temp dir
     command = [
-        "python", "./tika-img-similarity/tikasimilarity/distance/jaccard_similarity.py",
+        "python", "./clones/tika-img-similarity/tikasimilarity/distance/jaccard_similarity.py",
         "--inputDir", subset_dir, 
         "--outCSV", out_dir
     ]
@@ -39,7 +56,7 @@ def main(input_dir, subset_dir, out_dir, num_files):
 
     # Cleanup
     shutil.rmtree(subset_dir)
-    print(f"Cleaned up {subset_dir}")
+    print(f"Cleaned up {subset_dir}", f"clustering csv can be found in: '{out_dir}'", sep = "\n", end = "\n" + "-"*50)
 
 if __name__ == "__main__":
 
@@ -50,9 +67,10 @@ if __name__ == "__main__":
     parser.add_argument("--subset_dir", type=str, default="./data/tika_similarity/temp", help="Temporary directory for symlinks (default: ./data/tika_similarity/temp)")
     parser.add_argument("--num_files", type=int, default=100, help="Number of JSON files to select (default: 100)")
     parser.add_argument("--out_csv", type=str, default="./clustering/jaccardSimilarity/jaccard.csv", help="Filepath for output (default: ./clustering/jaccardSimilarity/jaccard.csv)")
+    parser.add_argument("--fields", type=json.loads, default=[], help="JSON list of fields to keep (e.g., '[\"name\", \"age\"]')")
 
     args = parser.parse_args()
-    main(args.input_dir, args.subset_dir, args.out_csv, args.num_files)
+    main(args.input_dir, args.subset_dir, args.out_csv, args.num_files, args.fields)
 
 
 # (dsci550-py384) mattmann@MT-310349 data % python ./tika-img-similarity/tikasimilarity/distance/jaccard_similarity.py --inputDir ./data/tika_similarity/temp/ --outCSV jaccard.csv
