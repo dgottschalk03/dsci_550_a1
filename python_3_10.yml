@@ -1,0 +1,28 @@
+name: dsci_550_a1_py10env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pandas
+  - iso8601
+  - python-magic
+  - openjdk  # Required for Tika
+  - pip:
+      - tika
+      - hirlite
+      - etllib
+      - click==8.1.8
+      - datefinder==0.7.3
+      - editdistance==0.8.1
+      - geopandas==1.0.1
+      - narwhals==1.28.0
+      - nltk==3.9.1
+      - number-parser==0.3.2
+      - plotly==6.0.0
+      - pyogrio==0.10.0
+      - pyproj==3.7.1
+      - regex==2024.11.6
+      - shapely==2.0.7
+      - tika==2.6.0
