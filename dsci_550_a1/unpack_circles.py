@@ -3,9 +3,24 @@ from collections import defaultdict
 import os
 
 
-def unpack_cluster(file_path):
-    
+def unpack_cluster(file_path: str) -> dict:
+    '''
+    Takes output from 'jaccardClusterWorkflow.py' and unpacks indices that correspond to haunted place
+    Input:
+        [file_path]    - Path to output file
+                       - ./clustering/jaccard/visualization/clusters.json, 
+                       - ./clustering/jaccard/visualization/levelCluster.json
+                       - ./clustering/jaccard/visualization/circles.json, 
+    Returns:
+        [clusters]   - Dictionary of clusters. 
+                     -   { ["cluster name"]: [list of haunted place indicies], ...}
+                     
+    >>> from dsci_550_a1.unpack_circles import unpack cluster
 
+    >>> clusters = unpack_cluster("./clustering/jaccard/visualization/clusters.json")
+
+    >>> df.loc[clusters] (assuming you've loaded haunted_places_features_added.tab as df)
+    '''
     with open(file_path, "r") as f:
         data = json.load(f)
 
