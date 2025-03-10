@@ -25,12 +25,33 @@ if not starting_dir.endswith("dsci_550_a1"):
     else:
         sys.exit("Script exited")
 
+## Get clustering type ##
+cluster_char = ''
+while cluster_char not in ['j', 'e', 'c']:
+    cluster_char = input("Enter a clustering type: \n\t -j [jaccard] \n\t -e [edit-distance] \n\t -c [cosine] \n" + '-'*50 + "\n" + "Choice: ").lower()
+    
+if cluster_char == 'j':
+    clustering_method = 'jaccard'
+    circle_packing_kwarg = '2'
+    
+# edit distance requires circle packing kwarg of 0 
+elif cluster_char == 'e':
+    clustering_method = 'edit-distance'
+    circle_packing_kwarg = '0'
+
+elif cluster_char == 'c':
+    clustering_method = 'cosine'
+    circle_packing_kwarg = '2'
+
 ## Create clustering output directory ##
 if not os.path.exists("./clustering"):
     os.makedirs("./clustering")
 
-if not os.path.exists("./clustering/jaccard"):
-    os.makedirs("./clustering/jaccard")
+clustering_subdir = os.path.join("./clustering", clustering_method)
+
+if not os.path.exists(clustering_subdir):
+    os.makedirs(clustering_subdir)
+
 
 
 ## Create directories for aggregate.json, json, and conf files  in data folder ##
@@ -62,15 +83,18 @@ num_files = num_files
 ## subset of fields you want to consider
 fields = ''
 while True:
-    fields = input("Enter a list of fields to keep (e.g., '[\"name\", \"age\"]'): ").strip()
+    fields = input("Enter a list of fields to keep (e.g., '[\"name\", \"age\"]'): \n\t -a [all fields] \n" + '-'*50 + "\n" + "Choice: ").strip()
 
+    # if user puts "a", use all fields 
+    if fields == 'a':
+        fields = str(columns).replace("'", "\"")
     try:
         fields_check = json.loads(fields)
         if isinstance(fields_check, list):
             if all([(field in columns) for field in json.loads(fields)]):
                 break
             else:
-                print("Some of the fields you entered are not in {outfile}. Please try again.")
+                print(f"Some of the fields you entered are not in {outfile}. Please try again.")
 
         else:
             print("Incorrect format. Please use json list (e.g., '[\"name\", \"age\"]')")
@@ -79,22 +103,6 @@ while True:
 
 
 
-# ## Create clustering output directory ##
-# if not os.path.exists("./clustering"):
-#     os.makedirs("./clustering")
-
-# if not os.path.exists("./clustering/jaccard"):
-#     os.makedirs("./clustering/jaccard")
-
-
-# ## Create directories for aggregate.json, json, and conf files  in data folder ##
-
-# parent_dir = "./data/tika_similarity"
-# child_dirs = ["aggregate_json", "conf", "json", "temp", "clusters"]
-
-# os.makedirs(parent_dir, exist_ok = True)
-# for child in child_dirs:
-#     os.makedirs(os.path.join(parent_dir, child), exist_ok = True)
 
 ##############################################################################################################################
 
@@ -178,20 +186,23 @@ else:
     print("Jsons stored in './tika_similarity/json' and are ready for clustering")
 
 ##############################################################################################################################
+## Get Similarity Scores ##
 
-## Run jaccardSimilarity.py to get jaccard.csv ##
-print("\nNow running ./dsci_550_a1/runJaccardSimilarity.py:", end = "\n\n")
+## Run clusterHelper.py to get [method].csv ##
+print("\nNow running ./dsci_550_a1/clusterHelper.py:", end = "\n\n")
 ## Move back into project directory ##
 os.chdir(starting_dir)
 
+helper_output = os.path.join(clustering_subdir, f"{clustering_method}.csv")
 
 command = [
-    "python", "./dsci_550_a1/runJaccardSimilarity.py",
+    "python", "./dsci_550_a1/clusterHelper.py",
     "--input_dir", "./data/tika_similarity/json",
     "--subset_dir", "./data/tika_similarity/temp",
     "--num_files", num_files, 
-    "--out_csv", "./clustering/jaccard/jaccard.csv",
-    "--fields", fields
+    "--out_csv", helper_output,
+    "--fields", fields,
+    "--method", cluster_char
 ]
 
 
@@ -199,30 +210,28 @@ result = subprocess.run(command, capture_output=True, text=True)
 print("STDOUT:", result.stdout)
 print("STDERR:", result.stderr)
 
-# Replace '/temp/' with '/json/' in jaccard.csv #
-df2 = pd.read_csv("./clustering/jaccard/jaccard.csv", sep = ",")
+# Replace '/temp/' with '/json/' in helper_output #
+df2 = pd.read_csv(helper_output, sep = ",")
 df2['x-coordinate'] = df2['x-coordinate'].apply(lambda x: x.replace("/temp/", "/json/"))
 df2['y-coordinate'] = df2['y-coordinate'].apply(lambda x: x.replace("/temp/", "/json/"))
-df2.to_csv("./clustering/jaccard/jaccard.csv", sep = ",", index = False) 
+df2.to_csv(helper_output, sep = ",", index = False) 
 
 ##############################################################################################################################
 
-## Run 'edit-cosine-circle-packing.py' 'edit-cosine-cluster.py' and 'generateLevelCluster.py' ##
-
 command = [
     "python", "./clones/tika-img-similarity/tikasimilarity/cluster/edit-cosine-circle-packing.py",
-    "--inputCSV", "./clustering/jaccard/jaccard.csv",
-    "--cluster", "2",
+    "--inputCSV", f"{helper_output}",
+    "--cluster", circle_packing_kwarg,
 ]
 
 result = subprocess.run(command, capture_output=True, text=True)
 print("STDOUT:", result.stdout)
 print("STDERR:", result.stderr)
 
-
+    
 command = [
     "python", "./clones/tika-img-similarity/tikasimilarity/cluster/edit-cosine-cluster.py",
-    "--inputCSV", "./clustering/jaccard/jaccard.csv",
+    "--inputCSV", f"{helper_output}",
     "--cluster", "2",
 ]
 
@@ -239,8 +248,8 @@ print("STDOUT:", result.stdout)
 print("STDERR:", result.stderr)
 
 ##############################################################################################################################
-
 ## Make HTML ##
+
 command = "cp -R ./clones/etllib/html/* ."
 
 result = subprocess.run(command, shell = True, capture_output=True, text=True)
@@ -252,33 +261,39 @@ print("STDERR:", result.stderr)
 ##############################################################################################################################
 ## Save Metadata and move outputs ##
 
-print("\n" + "-"*50, "Metadata saved to ./clustering/jaccard/metadata.json", sep = "\n", end = "\n\n")
+# Metadata
+metadata_filepath = os.path.join(clustering_subdir, "metadata.json")
+print("\n" + "-"*50, f"Metadata saved to {metadata_filepath}", sep = "\n", end = "\n\n")
 
 metadata = {
     "num_files" : num_files,
     "fields" : fields,
-    "input_data" : outfile
+    "input_data" : outfile, 
+    "method" : clustering_method
 }
 
-with open("./clustering/jaccard/metadata.json", "w") as f:
+with open(metadata_filepath, "w") as f:
     json.dump(metadata, f, indent = 4)
 
-print("Moving output files to ./clustering/jaccard/visualization", end = "\n\n")
 
-output_dir = "./clustering/jaccard"
+# Output directory
+output_dir = os.path.join(clustering_subdir, "visualization")
+os.makedirs(os.path.join(output_dir), exist_ok = True)
+
+print(f"Moving output files to {output_dir}", end = "\n\n")
+
+
 output_html = ['./circlepacking.html', 'cluster-d3.html', 'levelCluster-d3.html']
 output_json = ['circle.json', 'levelCluster.json', 'clusters.json']
 
-output_viz = os.path.join(output_dir, "visualization")
-os.makedirs(os.path.join(output_viz), exist_ok = True)
 
 
 for file in output_html:
-    dest_path = os.path.join(output_viz,os.path.basename(file))
+    dest_path = os.path.join(output_dir,os.path.basename(file))
     shutil.move(file, dest_path)
 
 for file in output_json:
-    dest_path = os.path.join(output_viz,os.path.basename(file))
+    dest_path = os.path.join(output_dir,os.path.basename(file))
     shutil.move(file, dest_path)
     
 print("All Done :)", "\n" + "-"*50, sep = "\n")
