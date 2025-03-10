@@ -54,8 +54,8 @@ def unpack_cluster(file_path: str) -> dict:
 
                 # Extract index and add to output
                 idx = int(json.load(haunted_place)["Haunted_Places_Id"])
-                clusters[cl['name']].append(idx)
-
-    os.chdir(starting_dir)
+                if idx not in clusters[cl['name']]:
+                    clusters[cl['name']].append(idx)
+    
     
     return clusters
