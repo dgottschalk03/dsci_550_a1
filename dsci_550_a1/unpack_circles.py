@@ -14,7 +14,7 @@ def unpack_cluster(file_path: str) -> dict:
     Returns:
         [clusters]   - Dictionary of clusters. 
                      -   { ["cluster name"]: [list of haunted place indicies], ...}
-                     
+    eg:          
     >>> from dsci_550_a1.unpack_circles import unpack cluster
 
     >>> clusters = unpack_cluster("./clustering/jaccard/visualization/clusters.json")
