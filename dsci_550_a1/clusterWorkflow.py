@@ -11,9 +11,14 @@ import subprocess
 import time
 import json
 
+## Load Dataset ##
+
+outfile = "./data/processed/haunted_places_features_added.tab"
+columns = pd.read_csv(outfile, nrows = 0, sep = "\t").columns.tolist()
+
 ##############################################################################################################################
 
-## Making Directories ##
+## Check Starting Directory ##
 
 ## Check cwd. if not in project director, prompt user##
 starting_dir = os.getcwd()
@@ -25,7 +30,16 @@ if not starting_dir.endswith("dsci_550_a1"):
     else:
         sys.exit("Script exited")
 
-## Get clustering type ##
+
+
+##############################################################################################################################
+
+## User input ##
+# user inputs fields to cluster by and files they wish to cluster
+
+#########################################################
+## Get clustering type and make clustering dir ##
+
 cluster_char = ''
 while cluster_char not in ['j', 'e', 'c']:
     cluster_char = input("Enter a clustering type: \n\t -j [jaccard] \n\t -e [edit-distance] \n\t -c [cosine] \n" + '-'*50 + "\n" + "Choice: ").lower()
@@ -52,26 +66,17 @@ clustering_subdir = os.path.join("./clustering", clustering_method)
 if not os.path.exists(clustering_subdir):
     os.makedirs(clustering_subdir)
 
+#########################################################
+## Trial Output Directory Name  ##
 
+Trial_Subdir = ''
+while Trial_Subdir == '':
+    Trial_Subdir = input("\n" + '-'*50 + f"\nEnter the name of the folder you would like to create. \n\nAll results and metadata will be saved to this Choice '{clustering_subdir}/[Choice]'\n" + '-'*50 + "\n" + "Choice: ").strip()
 
-## Create directories for aggregate.json, json, and conf files  in data folder ##
+Trial_Subdir = os.path.join(clustering_subdir, Trial_Subdir)
 
-parent_dir = "./data/tika_similarity"
-child_dirs = ["aggregate_json", "conf", "json", "temp", "clusters"]
-
-os.makedirs(parent_dir, exist_ok = True)
-for child in child_dirs:
-    os.makedirs(os.path.join(parent_dir, child), exist_ok = True)
-
-
-##############################################################################################################################
-
-## User input ##
-# user inputs fields to cluster by and files they wish to cluster
-
-
-outfile = "./data/processed/haunted_places_features_added.tab"
-columns = pd.read_csv(outfile, nrows = 0, sep = "\t").columns.tolist()
+if not os.path.exists(Trial_Subdir):
+    os.makedirs(Trial_Subdir, exist_ok = True)
 
 #########################################################
 ## Selecting subset of files  ##
@@ -125,17 +130,28 @@ while True:
 
 
 
-
 ##############################################################################################################################
 
 ## Check if json files are unpacked.  ##
-# If not, unpack using tsvtojson and repackage.py
+
+## Create directories for aggregate.json, json, and conf files in data folder ##
+
+parent_dir = "./data/tika_similarity"
+child_dirs = ["aggregate_json", "conf", "json", "temp"]
+
+os.makedirs(parent_dir, exist_ok = True)
+for child in child_dirs:
+    os.makedirs(os.path.join(parent_dir, child), exist_ok = True)
 
 json_dir = os.path.join(parent_dir, "json")
+
+## Check if jsons are already inpacked
 
 if os.path.isdir(json_dir) and any(f.endswith(".json") for f in os.listdir(json_dir)):
     json_count = sum(1 for f in os.listdir(json_dir) if f.endswith(".json"))
     print("\n" + "-"*50, "You have already unpacked the haunted place json files", f"Total Json count: {json_count}", "Skipping unpacking using 'tsvtojson' and 'repackage.py'.", sep = "\n", end = "\n" + "-"*50)
+
+## If not run tsvtojson and repackage
 else:
     ##############################################################################################################################
     ## Run tsvtojson and repackage ##
@@ -215,7 +231,7 @@ print("\nNow running ./dsci_550_a1/clusterHelper.py:", end = "\n\n")
 ## Move back into project directory ##
 os.chdir(starting_dir)
 
-helper_output = os.path.join(clustering_subdir, f"{clustering_method}.csv")
+helper_output = os.path.join(Trial_Subdir, f"{clustering_method}.csv")
 
 command = [
     "python", "./dsci_550_a1/clusterHelper.py",
@@ -284,7 +300,7 @@ print("STDERR:", result.stderr)
 ## Save Metadata and move outputs ##
 
 # Metadata
-metadata_filepath = os.path.join(clustering_subdir, "metadata.json")
+metadata_filepath = os.path.join(Trial_Subdir, "metadata.json")
 print("\n" + "-"*50, f"Metadata saved to {metadata_filepath}", sep = "\n", end = "\n\n")
 
 metadata = {
@@ -300,7 +316,7 @@ with open(metadata_filepath, "w") as f:
 
 
 # Output directory
-output_dir = os.path.join(clustering_subdir, "visualization")
+output_dir = os.path.join(Trial_Subdir, "visualization")
 os.makedirs(os.path.join(output_dir), exist_ok = True)
 
 print(f"Moving output files to {output_dir}", end = "\n\n")
