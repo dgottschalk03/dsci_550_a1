@@ -67,18 +67,40 @@ for child in child_dirs:
 ##############################################################################################################################
 
 ## User input ##
-# user inputs fields tocluster by and number of files they wish to cluster
+# user inputs fields to cluster by and files they wish to cluster
 
 
 outfile = "./data/processed/haunted_places_features_added.tab"
 columns = pd.read_csv(outfile, nrows = 0, sep = "\t").columns.tolist()
 
-## Subset of files you want to cluster ##
+#########################################################
+## Selecting subset of files  ##
+
 num_files = '' 
 while not num_files.isdigit() or not (0 < int(num_files) <= 10992):
-    num_files = input("Enter number of haunted places to cluster: ")
+    num_files = input("\n" + '-'*50 + "\nEnter number of haunted places to cluster: \n\nType \"-1\" to input a list of custom indicies \n" + '-'*50 + "\n" + "Choice: ").strip()
 
+    ## If user selects -1, prompt to input list
+    if num_files == '-1': 
+
+        while True: 
+            num_files = input("Enter a list of indicies corresponding to haunted places in \"haunted_places_features_added.tab\" (e.g., '[1, 2, 3]'):  \n" + '-'*50 + "\n" + "Choice: ").strip()
+            # Check if list is in valid format
+            try: 
+                num_files_check = json.loads(num_files)
+                # Break loop if list is valid and all entries are integers within 0, 10991
+                if isinstance(num_files_check, list) and all ((isinstance(num, int) and 0 <= num <= 10991) for num in num_files_check):
+                    break
+                else:
+                    print("Error: Please enter a valid list of integers within range [0, 10991].")
+            except json.JSONDecodeError:
+                print("Make sure your list is in proper json list format  (e.g., '[1, 2, 3]')")
+        break
+        
 num_files = num_files
+
+#########################################################
+## Field Selection ##
 
 ## subset of fields you want to consider
 fields = ''
@@ -266,7 +288,8 @@ metadata_filepath = os.path.join(clustering_subdir, "metadata.json")
 print("\n" + "-"*50, f"Metadata saved to {metadata_filepath}", sep = "\n", end = "\n\n")
 
 metadata = {
-    "num_files" : num_files,
+    "number of files" : len(num_files) if isinstance(num_files, list) else num_files,
+    "haunted place indicies" : num_files if isinstance(num_files, list) else 'random sample', 
     "fields" : fields,
     "input_data" : outfile, 
     "method" : clustering_method
