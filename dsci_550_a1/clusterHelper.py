@@ -34,12 +34,36 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
     ## Get all JSON files ##
     json_files = glob.glob(os.path.join(input_dir, "*.json"))
 
-    # Sample a subset
-    selected_files = random.sample(json_files, min(num_files, len(json_files)))
+    ## If num_files is a json list, convert to list and pick those indicies ##
+    if isinstance(num_files, list):
+        print("-"*50 , f"Selecting subset of files from {input_dir}", f"Indicies selected: {num_files}", sep = "\n")
+        selected_files = []
+        selected_indicies = num_files
+        # Open each json file and load data
+
+        for f in json_files:
+            with open(f, 'r') as f:
+                data = json.load(f)
+
+                # Add file to selected files if "Haunted_Places_Id" is in selected indicies
+                if int(data['Haunted_Places_Id']) in selected_indicies:
+                    selected_files.append(f.name)
+                    selected_indicies.remove(int(data['Haunted_Places_Id']))
+
+            # break early if we hit all indicies
+            if len(selected_files) == len(selected_indicies):
+                break
+                
+        print("Selection Completed, indicies without a matching file: ", selected_indicies, sep = "\n", end = "\n" + "-"*50)
+   
+    ## if num_files is not a json list, it must be an integer. So we randomly sample that many files ##
+    else:
+        selected_files = random.sample(json_files, min(num_files, len(json_files)))
+    
 
     # Ensure subset directory exists and is empty
     if os.path.exists(subset_dir):
-        shutil.rmtree(subset_dir)  # Clear existing symlinks
+        shutil.rmtree(subset_dir)  # Clear existing directory
     os.makedirs(subset_dir)
 
 
@@ -64,7 +88,7 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
 
     # Remove unwanted fields from jsons #
     
-    print("-"*50 , f"\nCreated {len(selected_files)} json copies in {subset_dir}", f"Now running '{similarity_script}'", sep = "\n")
+    print("-"*50 , f"Created {len(selected_files)} json copies in {subset_dir}", f"Now running '{similarity_script}'", sep = "\n")
 
     ## Run [method].py on the temp dir ##
     command = [
@@ -80,6 +104,13 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
     shutil.rmtree(subset_dir)
     print(f"Cleaned up {subset_dir}", f"clustering csv can be found in: '{out_dir}'", sep = "\n", end = "\n" + "-"*50)
 
+## Custom type function for argparse ##
+def int_or_json(s):
+    try:
+        return json.loads(s)
+    except json.JSONDecodeError:
+        return int(s)
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Select a random subset of JSON files and run similarity metric on them.")
@@ -87,7 +118,7 @@ if __name__ == "__main__":
     # Define default values
     parser.add_argument("--input_dir", type=str, default="./data/tika_similarity/json", help="Directory containing JSON files (default: ./data/tika_similarity/json)")
     parser.add_argument("--subset_dir", type=str, default="./data/tika_similarity/temp", help="Temporary directory for symlinks (default: ./data/tika_similarity/temp)")
-    parser.add_argument("--num_files", type=int, default=100, help="Number of JSON files to select (default: 100)")
+    parser.add_argument("--num_files", type=int_or_json, default=100, help="Number of JSON files to select (default: 100)")
     parser.add_argument("--out_csv", type=str, default="./clustering/jaccardSimilarity/jaccard.csv", help="Filepath for output (default: ./clustering/jaccardSimilarity/jaccard.csv)")
     parser.add_argument("--fields", type=json.loads, default=[], help="JSON list of fields to keep (e.g., '[\"name\", \"age\"]')")
     parser.add_argument("--method", type=str, default='j', help="Letter corresponding to clustering method \n\t -j [jaccard] \n\t -e [edit-distance] \n\t -c [cosine]")
