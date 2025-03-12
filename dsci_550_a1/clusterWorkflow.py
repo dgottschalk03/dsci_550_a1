@@ -89,20 +89,50 @@ while not num_files.isdigit() or not (0 < int(num_files) <= 10992):
     if num_files == '-1': 
 
         while True: 
-            num_files = input("Enter a list of indicies corresponding to haunted places in \"haunted_places_features_added.tab\" (e.g., '[1, 2, 3]'):  \n" + '-'*50 + "\n" + "Choice: ").strip()
-            # Check if list is in valid format
+            file_name = input("Enter the relative filepath to a '.txt' file specifying the indicies you want from \"haunted_places_features_added.tab\" (e.g., './placesIWant.txt'):  \n" + '-'*50 + "\n" + "Choice: ").strip()
+            
+            # open.txt and check if list is in valid format
             try: 
+                with open(file_name, 'r') as f:
+                    num_files = f.read()
+                
                 num_files_check = json.loads(num_files)
+
                 # Break loop if list is valid and all entries are integers within 0, 10991
                 if isinstance(num_files_check, list) and all ((isinstance(num, int) and 0 <= num <= 10991) for num in num_files_check):
                     break
                 else:
-                    print("Error: Please enter a valid list of integers within range [0, 10991].")
+                    print(f"Make sure all the entries in the list in {file_name} are integers between [0,10991]")
             except json.JSONDecodeError:
-                print("Make sure your list is in proper json list format  (e.g., '[1, 2, 3]')")
+                print(f"Make sure the list in {file_name} is in proper json list format  (e.g., '[1, 2, 3]')")
+            except FileNotFoundError:
+                print(f"Error: {file_name} is not a valid filepath. Make sure you input a valid .txt path")
         break
         
 num_files = num_files
+
+# num_files = '' 
+# while not num_files.isdigit() or not (0 < int(num_files) <= 10992):
+#     num_files = input("\n" + '-'*50 + "\nEnter number of haunted places to cluster: \n\nType \"-1\" to input a list of custom indicies \n" + '-'*50 + "\n" + "Choice: ").strip()
+
+#     ## If user selects -1, prompt to input list
+#     if num_files == '-1': 
+        
+#         while True: 
+#             num_files = input("Enter a list of indicies corresponding to haunted places in \"haunted_places_features_added.tab\" (e.g., '[1, 2, 3]'):  \n" + '-'*50 + "\n" + "Choice: ").strip()
+#             # Check if list is in valid format
+#             try: 
+#                 num_files_check = json.loads(num_files)
+#                 # Break loop if list is valid and all entries are integers within 0, 10991
+#                 if isinstance(num_files_check, list) and all ((isinstance(num, int) and 0 <= num <= 10991) for num in num_files_check):
+#                     break
+#                 else:
+#                     print("Error: Please enter a valid list of integers within range [0, 10991].")
+#             except json.JSONDecodeError:
+#                 print("Make sure your list is in proper json list format  (e.g., '[1, 2, 3]')")
+#         break
+        
+# num_files = num_files
 
 #########################################################
 ## Field Selection ##
