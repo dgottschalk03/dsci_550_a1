@@ -18,7 +18,7 @@ Data science is all about pretty pictures. Let's look at some:
 
 Here is the map with all 3 event types we selected. 
 
-[all_event_types_toggled](reports/figures/airborne_events_eg_figs/all_event_types_toggle_on.png)
+![all_event_types_toggled](reports/figures/airborne_events_eg_figs/all_event_types_toggle_on.png)
 - you can see *{"Plane_Crash", "Electronic_Malfunction", "Flying_Object"}* in the **legend** on the right. Each event is colored by a spooky color scheme. 
 - This entry seems interesting ... **Spirit of pilot killed in helicopter crash?** 
     - This entry has **over 20 flight intersections** and **1 nearby airport**
@@ -27,7 +27,7 @@ Here is the map with all 3 event types we selected.
 
 First, we toggle flight paths:
 
-[flights_toggled](reports/figures/airborne_events_eg_figs/flight_paths_toggled_on.png)
+![flights_toggled](reports/figures/airborne_events_eg_figs/flight_paths_toggled_on.png)
 - Alright ... a bit harsh on the eyes, but still cool!
     - NOTE: I filter out non-intersecting flights. If I plotted all ~10,000 flight routes, the entire screen would be red. 
 - You can see all the intersecting flights with our haunted place. It looks like there are a lot by our entry of interest. 
@@ -35,7 +35,7 @@ First, we toggle flight paths:
 
 Now, we toggle on airports: 
 
-[airports_toggled](reports/figures/airborne_events_eg_figs/all_airport_types_toggled_on.png)
+![airports_toggled](reports/figures/airborne_events_eg_figs/all_airport_types_toggled_on.png)
 - I filter only for airports that intersect with our haunted place. 
 - You can see each airport's **name** and **IATA code**.
 - You can see each airport type in the **legend** on the right
@@ -44,23 +44,28 @@ Now, we toggle on airports:
 
 **Okay** back to the analysis... let's take a closer look at our haunted place.
 
-[zoomed_in_airports](reports/figures/airborne_events_eg_figs/zoomed_in_airports.png)
+![zoomed_in_airports](reports/figures/airborne_events_eg_figs/zoomed_in_airports.png)
 - Sure enough there are **2 nearby airports** and a **heliport**
 
+**ellesworth_airforce_base**
+![ellesworth_airforce_base](reports/figures/airborne_events_eg_figs/ellesworth_airforce_base.png)
 
-[ellesworth_airforce_base](reports/figures/airborne_events_eg_figs/ellesworth_airforce_base.png)
-[rapid_regional_airport](reports/figures/airborne_events_eg_figs/rapid_regional_airport.png)
-[rapid_regional_heliport](reports/figures/airborne_events_eg_figs/rapid_regional_helipad.png)
+**rapid_regional_airport**
+![rapid_regional_airport](reports/figures/airborne_events_eg_figs/rapid_regional_airport.png)
+
+**rapid_regional_heliport**
+![rapid_regional_heliport](reports/figures/airborne_events_eg_figs/rapid_regional_helipad.png)
 - Looks like the spirit of our pilot lies in the **ellesworth_airforce_base**. That's not the only airborne related event!
 
-[nearby_crash](reports/figures/airborne_events_eg_figs/rapid_regional_airport_nearby_crash.png)
+**Dakota Junior High School Football team**
+![nearby_crash](reports/figures/airborne_events_eg_figs/rapid_regional_airport_nearby_crash.png)
 - in 1968, an **entire football team and their coach** died in a plane crash at *rapid_regional_airport*.
 
-
-[floating_orb](reports/figures/airborne_events_eg_figs/floating_orb_near_rapid_regional.png)
+**Floating Orbs?**
+![floating_orb](reports/figures/airborne_events_eg_figs/floating_orb_near_rapid_regional.png)
 - "many employees" at the *Rushmore 9 move theater* are also seeing **shadowy figures** and **floating lights**.
 
-Are these the ghosts of the Dakota Junior High School Football team? **Or** are they lights from the nearby [rapid_regional_heliport?](reports/figures/airborne_events_eg_figs/rapid_regional_helipad.png). I'll let you be the judge.
+Are these the ghosts of the Dakota Junior High School Football team? **OR** are they lights from the nearby [rapid_regional_heliport](reports/figures/airborne_events_eg_figs/rapid_regional_helipad.png)? **I'll let you be the judge :).**
 
 
 #### Conclusion
