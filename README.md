@@ -184,6 +184,7 @@ Identified distinct daylight preferences for different apparition types
 - Found statistically significant relationship between time of day and evidence types
 - Conducted seasonal analysis revealing % of haunting reports occur in winter
 - Created visualizations showing the relationships between daylight duration, time of day, apparition types, and evidence patterns [see figures](reports/figures/apparition_type_figs)
+
 **mm**
 - Wrote portion of the report about the Apparatition features
 - Wrote portion of the report about correlations between keywords and Apparition types 
