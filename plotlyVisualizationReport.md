@@ -126,7 +126,7 @@ In my analysis, I found that **4 out of the top 10 most haunted heliports were i
 Overall, this tool is a fun way to see figure out where **not** to travel, or at the very least, what spooky apparition you are most likely to encounter. 
 
 #### **Additional Notes airborne_events.html**
-- You can also color code haunted places by event type by editing the second cell [Notebook 3.00](notebooks/3.02-dg-HP_Features_Added-haunted_airports_plot.ipynb)
+- You can also color code haunted places by event type by editing the second cell [Notebook 3.02](notebooks/3.02-dg-HP_Features_Added-haunted_airports_plot.ipynb)
     - Event_Types are '|' delimited, so **you have to change the split delimeter**
 - Airports were filtered using *airport_haunted_place_counts.json* and *flight_haunted_place_counts.json*. 
     - These are outputs of [Notebook 3.00](notebooks/3.00-dg-airport_intersections-counts.ipynb)

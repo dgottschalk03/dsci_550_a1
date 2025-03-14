@@ -171,14 +171,19 @@ Features from Assignment:
 - Clustering Mental Health Features | [sm_rm](notebooks/4.03-ss_rm-haunted_places_features-mental_health_cluster.ipynb)
 - Clustering Alcohol Features | [sm_rm](notebooks/4.04-ss_rm-haunted_places_features-alcohol_cluster.ipynb)
 - Clustering using [Apparition_Type, Event_Type, and Time_of_Day] as features |  [mm](clustering/mikenaClustering)
-- 
+-  Clustered using Tika Similarity on ["Time_of_Day", "Total_Deaths", "Apparition_Type", "Daylight_Duration_Hours", "Haunted_Places_Witness_Count", "Event_Type", "Haunted_Place_Proximity"] | [km](clustering/kateClustering)
 
 5. **Report Writeup**
 **dg**
 - wrote **Open Flights Results** and **Open Flights** portions of report
 
 **km**
-
+- Wrote portion of the report on daylight duration and time of day effects on paranormal experiences
+- Conducted in-depth analysis of whether murders occur more frequently in the evening
+Identified distinct daylight preferences for different apparition types
+- Found statistically significant relationship between time of day and evidence types
+- Conducted seasonal analysis revealing % of haunting reports occur in winter
+- Created visualizations showing the relationships between daylight duration, time of day, apparition types, and evidence patterns [see figures](reports/figures/apparition_type_figs)
 **mm**
 - Wrote portion of the report about the Apparatition features
 - Wrote portion of the report about correlations between keywords and Apparition types 
@@ -200,6 +205,7 @@ Features from Assignment:
     - wrote README.md
     - organized github and directories
 - Wrote [cluster workflow functions](dsci_550_a1/clusterWorkflow.py) [helper functions](dsci_550_a1/clusterHelper.py) used by group to perform clustering
+- Wrote [report](plotlyVisualizationReport.md) on Plotly visualization of haunted places.
 
 **km**
 
