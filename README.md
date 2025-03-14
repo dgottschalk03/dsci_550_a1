@@ -142,23 +142,22 @@ Features from Assignment:
 - [OpenFlights](https://openflights.org/data.php#route) and [OurAirports](https://ourairports.com/data/) | [dg](notebooks/2.01-dg-airports_data-joining.ipynb)
     - **MIME TYPE** | *Multi-Part/\**
     - **Features** | *{Aerodrome_Count, Aerodrome_Proximity, Flight_Intersection_Count, Flight_HighTraffic}*
-- [Alcohol_Dataset](https://drugabusestatistics.org/alcohol-abuse-statistics/) [rm](notebooks/2.02-rm-alcohol_abuse-join.ipynb)
-- [Daylight_Hours_Dataset](https://sunrise-sunset.org/api) [km](./dsci_550_a1/haunteddateday.py)
-- [Places_Of_Worship](https://hub.arcgis.com/datasets/openstreetmap::openstreetmap-places-of-worship-for-north-america/about) *2.02-ss*
-- [Place_Of_Worship](https://hub.arcgis.com/datasets/openstreetmap::openstreetmap-places-of-worship-for-north-america/about) [ss](/notebooks/2.02-ss-Places_of_Worship-joining.ipynb)
+- [Place_Of_Worship](https://hub.arcgis.com/datasets/openstreetmap::openstreetmap-places-of-worship-for-north-america/about) | [ss](/notebooks/2.02-ss-Places_of_Worship-joining.ipynb)
     - **MIME TYPE** | *Application/\**
     - **Features** | *{Distance_to_Nearest_Worship, Haunted_Place_Proximity, Religion_Intersection}*
-- [BRFFS_Mental_Health]() [ss](notebooks/2.03-ss-mental_health_data-joining.ipynb)
+- [BRFFS_Mental_Health]() | [ss](notebooks/2.03-ss-mental_health_data-joining.ipynb)
     - **MIME TYPE** | *Text/\**
     - **Features** | *{Average_Mental_Health_Days, Average_Poor_Health_Days, Depression_Prevalence}*
+- [Alcohol_Dataset](https://drugabusestatistics.org/alcohol-abuse-statistics/) | [rm](notebooks/2.02-rm-alcohol_abuse-join.ipynb)
+- [Daylight_Hours_Dataset](https://sunrise-sunset.org/api) | [km](./dsci_550_a1/haunteddateday.py)
 
 3. **Visualizations**
-- [Airborne_Events.html](notebooks/3.01-dg-haunted_places-airborne_events_plot.ipynb)
+- [Airborne_Events.html](notebooks/3.01-dg-haunted_places-airborne_events_plot.ipynb) | [dg]
     - Plot generated using plotly.go
     - Plots 199 haunted places with their intersecting routes and airports
     - All haunted places flagged with either *{Plane_Crash, Electronic_Malfunction, Flying_Object}*
     - Uncomment last line to write html file
-- [mostHauntedAirports.html](notebooks/3.02-dg-HP_Features_Added-haunted_airports_plot.ipynb)
+- [mostHauntedAirports.html](notebooks/3.02-dg-HP_Features_Added-haunted_airports_plot.ipynb) | [dg]
     - Plots 10 most haunted airplane routes
     - Plots 10 most haunted airports of each type
     - Plots every haunted event color coded by apparition type
@@ -166,17 +165,17 @@ Features from Assignment:
 
 4. **Clustering/Inference**
 - Clustering Flight Features | [dg](notebooks/4.01-dg-HP_Features_Added-Flight_Clusters.ipynb)
-- Clustering Religion Features| [sm_rm](notebooks/4.02-ss_rm-haunted_places_features-religion_cluster.ipynb)
+- Clustering Religion Features | [sm_rm](notebooks/4.02-ss_rm-haunted_places_features-religion_cluster.ipynb)
 - Clustering Mental Health Features | [sm_rm](notebooks/4.03-ss_rm-haunted_places_features-mental_health_cluster.ipynb)
-- Clustering Alcohol Features| [sm_rm](notebooks/4.04-ss_rm-haunted_places_features-alcohol_cluster.ipynb)
-- Clustering using [Apparition_Type, Event_Type, and Time_of_Day] as features [mm](clustering/mikenaClustering)
+- Clustering Alcohol Features | [sm_rm](notebooks/4.04-ss_rm-haunted_places_features-alcohol_cluster.ipynb)
+- Clustering using [Apparition_Type, Event_Type, and Time_of_Day] as features |  [mm](clustering/mikenaClustering)
 - 
 
 5. **Report Writeup**
 **dg**
 - wrote **Open Flights Results** and **Open Flights** portions of report
-**km**
 
+**km**
 
 **mm**
 - Wrote portion of the report about the Apparatition features
@@ -187,6 +186,7 @@ Features from Assignment:
 **rm**
 - Wrote portion of report about the Alcohol Abuse related clusters and discussed which locations more likely to be influenced by alcohol abuse that cause more Haunted Places to be reported
 - Wrote portion of report about pros/cons of Apache Tika
+
 **ss**
 - Wrote portion of report about how the Mental Health related features were extracted and about the clusters.
 - Wrote portion of report about how the Places of Worship related features were extracted and about the clusters.
