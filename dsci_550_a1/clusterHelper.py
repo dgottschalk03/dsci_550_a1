@@ -3,14 +3,68 @@ import random
 import shutil
 import glob
 import subprocess
-import datetime
 import argparse
 import json
 import sys
 
 def main(input_dir, subset_dir, out_dir, num_files, fields, method):
+    """
+        Computes distance between samples using input 'method'
+        Helper function for clusterWorkflow.py
+        Inputs:
 
+            [input_idr]         | Directory with .json files to cluster. 
+            [subset_dir]        | Directory where copied jsons are stored. Deleted after script terminates.
+            [out_dir]           | Directory for outputs
+            [num_files]         | determines sample of dataset used. Either [int] or [str]
+                - [int]  | size of random sample. (sample generated using random.randint) 
+                - [str]  | filepath to .txt specifying exact indicies to sample. 
+            [fields]            | features to consider for clustering
+                - "Haunted_Places_ID" hardcoded to not be used as a feature
+                - if field not in .json file or misspelled, it is skipped and user is notified.
+                    
+            [method]            | Similarity metric used. (Credit: https://github.com/chrismattmann/tika-similarity)
+                - (j)accard  | */jaccard_similarity.py
+                - (e)dit     | */edit-value-similarity.py
+                - (c)osine   | */cosine_similarity.py
+ 
+        Outputs:
+            [Output]             | Output of [method]_similarity.py
+                - ./out_dir/[method].csv 
+        Returns:
+            [None]  
+        NOTES:
+            - You need etllib and tika-similarity installed in the "clones" directory for this script to work 
+                - Tika_Similarity | https://github.com/chrismattmann/tika-similarity
+                - Etllib          | https://github.com/chrismattmann/etllib
+    eg use:
+    >>> python clusterHelper.py 
+    --input_dir "./data/tika_similarity/json_files" \
+    --subset_dir "./data/tika_similarity/temp" \
+    --num_files [33, 22] \
+    --out_csv "./results/clustering_results.csv" \
+    --fields '-a' \
+    --method "j"  
+    
+    eg output: 
+    
+    STDOUT: Accepting all MIME Types.....
+    --------------------------------------------------
+    Selecting subset of files from ./data/tika_similarity/json
+    Indicies selected: [33, 22]
+    Selection Completed, indicies without a matching file: 
+    [33]
+    ----------------------------------------------------------------------------------------------------
+    Created 1 json copies in ./data/tika_similarity/temp
+    Now running './clones/tika-img-similarity/tikasimilarity/distance/jaccard_similarity.py'
+    Finished running './clones/tika-img-similarity/tikasimilarity/distance/jaccard_similarity.py'
+    --------------------------------------------------
+    Cleaned up ./data/tika_similarity/temp
+    clustering csv can be found in: './clustering/jaccard/hellp/jaccard.csv' 
+    """
+    ##############################################################################################################################
     ## Check if method and fields are valid ##
+
     if method not in ['j', 'e', 'c']:
         sys.exit("'method' kwarg must be in ['j', 'e', 'c']. \n\t -j [jaccard] \n\t -e [edit-distance] \n\t -c [cosine] \n")
     # Check if fields is empty
@@ -20,8 +74,9 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
     if not os.getcwd().endswith('dsci_550_a1'):
         sys.exit("This script has relative paths from the project directory. Please run from project directory.")
     
-
+    ##############################################################################################################################
     ## Select Similarity Script based on 'method' kwarg ##
+
     if method == 'j':
         similarity_script = "./clones/tika-img-similarity/tikasimilarity/distance/jaccard_similarity.py"
 
@@ -31,16 +86,18 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
     elif method == 'c':
         similarity_script = "./clones/tika-img-similarity/tikasimilarity/distance/cosine_similarity.py"
     
-    ## Get all JSON files ##
+    ##############################################################################################################################
+    ## Copy JSON files ##
     json_files = glob.glob(os.path.join(input_dir, "*.json"))
 
     ## If num_files is a json list, convert to list and pick those indicies ##
     if isinstance(num_files, list):
         print("-"*50 , f"Selecting subset of files from {input_dir}", f"Indicies selected: {num_files}", sep = "\n")
+
         selected_files = []
         selected_indicies = num_files
+        
         # Open each json file and load data
-
         for f in json_files:
             with open(f, 'r') as f:
                 data = json.load(f)
@@ -60,14 +117,15 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
     else:
         selected_files = random.sample(json_files, min(num_files, len(json_files)))
     
+##############################################################################################################################
+## Copy files and move to temp folder ##
 
     # Ensure subset directory exists and is empty
     if os.path.exists(subset_dir):
-        shutil.rmtree(subset_dir)  # Clear existing directory
+        shutil.rmtree(subset_dir)  
     os.makedirs(subset_dir)
 
-
-    ## Copy files and move to temp folder ##
+    # Copy selected fields from each .json
     for file in selected_files:
         dest_path = os.path.join(subset_dir, os.path.basename(file))
         shutil.copy(file, dest_path)
@@ -83,14 +141,15 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
             fields.remove("Haunted_Places_Id")
 
         filtered_data = {key: data[key] for key in fields if key in data}
+
         with open(dest_path, "w", encoding="utf-8") as f:
             json.dump(filtered_data, f, indent=4)
-
-    # Remove unwanted fields from jsons #
     
     print("-"*50 , f"Created {len(selected_files)} json copies in {subset_dir}", f"Now running '{similarity_script}'", sep = "\n")
 
+##############################################################################################################################
     ## Run [method].py on the temp dir ##
+
     command = [
         "python", similarity_script,
         "--inputDir", subset_dir, 
@@ -104,7 +163,10 @@ def main(input_dir, subset_dir, out_dir, num_files, fields, method):
     shutil.rmtree(subset_dir)
     print(f"Cleaned up {subset_dir}", f"clustering csv can be found in: '{out_dir}'", sep = "\n", end = "\n" + "-"*50)
 
-## Custom type function for argparse ##
+##############################################################################################################################
+## Custom type function for num_files argparse ##
+# takes both int and json list #
+
 def int_or_json(s):
     try:
         return json.loads(s)

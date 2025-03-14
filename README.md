@@ -19,6 +19,8 @@ Due | 3-14-2025
 |
 ├── clones             <- Store cloned ettlib and tika-similarity repos 
 │
+├── clustering         <- Clustring output 
+│
 ├── data
 │   ├── joined_datasets<- Datasets joined to haunted_features
 │   ├── keywords       <- Keywords used in feature extraction. Used in notebooks [1.01, 1.02, 1.04, 1.05, 1.08]
