@@ -8,6 +8,7 @@ data/tika_similarity
 
 # select notebooks
 notebooks/3.02-dg-us_county-temp.ipynb
+sw.ipynb
 
 # Ignore git clones and clustering folder
 /clones
