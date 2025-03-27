@@ -8,8 +8,8 @@ Analysis of the Haunted Places Dataset. Assignment 1 for DSCI_550 SP 25.
 
 Due | 3-14-2025
 
+[Reference](./references/DSCI550_HW_BIGDATA_HAUNTED.pdf)
     
-
 
 
 ## Project Organization
@@ -43,7 +43,7 @@ Due | 3-14-2025
 │
 ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 │
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+├── reports            <- Final Report
 │   └── figures        <- Generated graphics and figures to be used in reporting
 │
 ├── environment.yml    <- Conda environment used to run notebooks 
@@ -102,10 +102,11 @@ Example Name: **01.01-dg-haunted_places-audio-evidence.ipynb**
 - **initials** | dg
 - **data** | haunted_places
 - **description** | audio_evidence
+
 Name of notebooks have 3 parts:
 
 
-### 0.01 - Phase.Notebook
+### **0.01** - Phase.Notebook
 - 'Phase':  The phase of the analysis
 - 'NOTEBOOK': The Nth notebook in that phase to be created.
 
@@ -173,7 +174,7 @@ Features from Assignment:
 - Clustering using [Apparition_Type, Event_Type, and Time_of_Day] as features |  [mm](clustering/mikenaClustering)
 -  Clustered using Tika Similarity on ["Time_of_Day", "Total_Deaths", "Apparition_Type", "Daylight_Duration_Hours", "Haunted_Places_Witness_Count", "Event_Type", "Haunted_Place_Proximity"] | [km](clustering/kateClustering)
 
-5. **Report Writeup**
+## **Report and Other Contributions**
 **dg**
 - wrote **Open Flights Results** and **Open Flights** portions of report
 
@@ -199,7 +200,7 @@ Identified distinct daylight preferences for different apparition types
 - Wrote portion of report about how the Mental Health related features were extracted and about the clusters.
 - Wrote portion of report about how the Places of Worship related features were extracted and about the clusters.
 
-6. **Other Contributions**
+### **Other Contributions**
 
 **dg**
 - Project manager
@@ -208,10 +209,55 @@ Identified distinct daylight preferences for different apparition types
 - Wrote [cluster workflow functions](dsci_550_a1/clusterWorkflow.py) [helper functions](dsci_550_a1/clusterHelper.py) used by group to perform clustering
 - Wrote [report](plotlyVisualizationReport.md) on Plotly visualization of haunted places.
 
-**km**
+---
 
-**mk**
+# DSCI_550_A2
 
-**rm**
+<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
+    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
+</a>
 
-**ss**
+Geospatial and Image Extraction of the Haunted Places Dataset. Assignment 2 for DSCI_550 SP 25. 
+
+Due | 4-4-2025
+
+[Reference](./references/DSCI550_HW_EXTRACT_HAUNTED.pdf)
+
+## Project Organization
+
+Directory Structure the same as A1. Redundant entries eliminated for readability. See astriks and annotations for changes and added scripts. 
+
+```
+├── README.md          
+|
+├── clones             <- 
+│
+├── clustering         <- 
+│
+├── data
+│   ├── processed      <- The final, canonical data sets for modeling. Also includes intermediary da
+|   │   ├── *features_added_v2.tab | Final dataset with new features
+│   
+├── notebooks          <- Jupyter notebooks. 
+│
+├── pyproject.toml     
+│
+├── references         <- "DSCI550_HW_Extract_Haunted.pdf"
+│
+├── reports            <- 
+│   └── figures        <- Generated graphics and figures to be used in reporting
+│
+├── environment.yml    <- Conda environment used to run notebooks 
+|
+├──  python_3_10.yml    <- Conda environment to run tika-similarity and ettlib (python > 3.10 not supported)
+│                         
+│
+└── dsci_550_a2*   <- Source code for use in assignment 2.
+│
+│
+│
+```
+
+## Project Overview
+
+Notebook 
