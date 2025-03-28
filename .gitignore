@@ -21,6 +21,7 @@ sw.ipynb
 **/*.html
 
 # Keep Keywords subfolder and raw data
+!data/generated_images
 !data/keywords/
 !data/raw/haunted_places.tab
 !data/processed/haunted_places_features_added.tab
