@@ -146,7 +146,9 @@ def extract_dates(text):
     two_digit_pattern_count = len(matched_years)
 
     ## Parse 4 Digit Pattern eg. "in the 1970's" ##
-    four_digit_pattern = [r"\b(?:in\s+the\s+)(\d{4})\s*'?s\b", r"\b(?:in\s+)?(\d{4})\s*'?s\b", r"\b(?:the\s+)?(\d{4})\s*'?s\b", ]
+    four_digit_pattern = [r"\b(?:in\s+the\s+)(\d{4})(?:\s*'?\s*s)?\b", r"\b(?:in\s+)?(\d{4})(?:\s*'?\s*s)?\b", r"\b(?:the\s+)?(\d{4})(?:\s*'?\s*s)?\b"]
+
+
     for pattern in four_digit_pattern:
         matched_years.extend(
             [re.sub(r"in the|'|s", "", year.lower()).strip() for year in re.findall(pattern, text, re.IGNORECASE)]
