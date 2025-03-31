@@ -181,6 +181,7 @@ def extract_dates(text):
 def clean_dates(lst):
     '''
     Removes datetime.datetime(2025, 1, 1) from a list of dates if list is longer than length 2. 
+    Removes duplicate years if there exists another date with the same year and month != 1. 
     This sometimes happens when "extract_dates" is applied to a row. 
     Input:
         [lst]     - list of datetime objects
@@ -188,10 +189,35 @@ def clean_dates(lst):
     Returns:
         [None] - Modifies list of dates
 
+    eg. 
+    >>> lst = [datetime.date(1970, 1, 1), datetime.date(1970, 3, 1)]
+    >>> clean_dates([datetime.date(1970, 1, 1), datetime.date(1970, 1, 1)])
+    >>> lst
+    [datetime.date(1970, 3, 1)]
+    
     '''
+    # sort list in date order
+    lst.sort()
 
+    # remove [2025, 1, 1] if list is longer than length 2
     if (len(lst) > 1) and (datetime.date(2025,1,1) in lst):
         lst.remove(datetime.date(2025, 1, 1))
     elif (len(lst) > 1) and (datetime.datetime(2025,1,1) in lst):
         lst.remove(datetime.datetime(2025, 1, 1))
-    return lst
+    
+    # remove duplicate years if month == 1
+    cleaned_dates = []
+    i = 0
+    while i < len(lst):
+        date = lst[i]
+        if date.month == 1:
+            curr_year = date.year
+            if any(d.year == curr_year for d in lst[i+1:]):
+                i += 1
+                continue
+        cleaned_dates.append(date)
+        i += 1
+    lst.clear()
+    lst.extend(cleaned_dates)
+
+    return None
