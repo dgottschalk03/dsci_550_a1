@@ -258,6 +258,19 @@ Directory Structure the same as A1. Redundant entries eliminated for readability
 │
 ```
 
-## Project Overview
+## **Project Overview**
 
-Notebook 
+We added a new phase: 5 for generative AI and stable diffusion. Click on contributor's initials to see file. 
+
+
+1. **Haunted Feature Creation**
+Features from Assignment:
+
+- Named_Entities | [dg]()
+- GeoTopic Parser | 
+- Tika Image Docker Generated Captions
+- Tika Image Docker Image Objects
+
+5. **Generative AI**
+
+- 
