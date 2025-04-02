@@ -254,4 +254,4 @@ def clean_dates(lst):
     lst.clear()
     lst.extend(cleaned_dates)
 
-    return None
+    return cleaned_dates
