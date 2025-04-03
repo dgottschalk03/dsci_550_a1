@@ -1,6 +1,6 @@
 # Named Entity Recognition Report
 
-This notebook analyzes named entities extracted [SpaCY](https://spacy.io/).
+This report is comprised of all findings from the [SpaCY_analysis_notebook](../notebooks/1.09-dg-hpv2-named_entities.ipynb). 
 
 ## **Named_Entities**
 
