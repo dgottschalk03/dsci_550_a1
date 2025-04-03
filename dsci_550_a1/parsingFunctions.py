@@ -122,18 +122,32 @@ def extract_dates(text):
             - four_digit_pattern_count (int): Number of dates found using four-digit patterns.
 
     """
-
-    ## Parse Using DateFinder ##
+    holiday_patterns = {
+    r"new\s*years?(?:\s*day)?": (1, 1),
+    r"valentines?(?:\s*day)?": (2, 14),
+    r"st\.?\s*patricks?(?:\s*day)?": (3, 17),
+    r"april\s*fools?(?:\s*day)?": (4, 1),
+    r"easter": (4, 20),  
+    r"independence(?:\s*day)?": (7, 4),
+    r"halloween": (10, 31),
+    r"thanksgiving": (11, 23),  
+    r"christmas\s*eve": (12, 24),
+    r"christmas\s*": (12, 25),
+    r"new\s*years?\s*eve": (12, 31)
+    }
+##############################################################################################################################
+    ## Datefinder ##
     # Remove Years < 1620 #
     matched_dates = [date.date() for date in datefinder.find_dates(text, base_date = datetime.datetime(2025, 1, 1)) 
                     if isinstance(date, datetime.datetime) and 1677 < date.year < 2026]
     datefinder_count = len(matched_dates)
 
-
-    ## Init list to store regex matches ##
+##############################################################################################################################
+    ## REGEX ##
     matched_years = []
 
-    ## Parse Two Digit Pattern eg. "20's" ##
+#########################################################
+    ## Two Digit Pattern eg. "20's" -> "1920's" ##
 
     two_digit_pattern = [r"\b(?:in\s+the\s+)'?(\d{2})\s*'?s\b", # eg. "in the 20's" (in + the) optional
                          r"\b(?:in\s+)?'?(\d{2})\s*'?s\b",  # eg. "in 20 's ("in" optional and optional white spaces)
@@ -143,11 +157,22 @@ def extract_dates(text):
             [re.sub(r"in the|'|s", "", year.lower()).strip() for year in re.findall(pattern, text, re.IGNORECASE)]
         )
     matched_years = ["19" + year for year in matched_years]
+
+#############################
+    ## Century Pattern eg. "20th Century" -> "1900" ##
+
+    century_patterns = [r"\b(\d{1,2})(?:st|nd|rd|th)?\s*century\b"] # eg. "3rd century". 
+
+    for pattern in century_patterns:
+        matched_centuries = re.findall(pattern, text, re.IGNORECASE)
+        for century in matched_centuries:
+            matched_years.append(str((int(century)-1) * 100))
+
     two_digit_pattern_count = len(matched_years)
 
+#########################################################
     ## Parse 4 Digit Pattern eg. "in the 1970's" ##
     four_digit_pattern = [r"\b(?:in\s+the\s+)(\d{4})(?:\s*'?\s*s)?\b", r"\b(?:in\s+)?(\d{4})(?:\s*'?\s*s)?\b", r"\b(?:the\s+)?(\d{4})(?:\s*'?\s*s)?\b"]
-
 
     for pattern in four_digit_pattern:
         matched_years.extend(
@@ -155,10 +180,19 @@ def extract_dates(text):
         )
     four_digit_pattern_count = len(matched_years) - two_digit_pattern_count
 
+#########################################################
+    ## Holidays ##
+    for pattern, val in holiday_patterns.items():
+        month, day = val
+        if check_regex(text, re.compile(pattern, re.IGNORECASE))[0]:
+            matched_dates.append(datetime.date(1000, month, day))
+
+#########################################################
     ## Add Regex to Matched_Dates **
     for year in matched_years:
         matched_dates.append(datetime.date(int(year), 1, 1)) 
 
+##############################################################################################################################
     ## Remove Duplicates ##
     matched_dates = list(set(matched_dates))
 
@@ -220,4 +254,4 @@ def clean_dates(lst):
     lst.clear()
     lst.extend(cleaned_dates)
 
-    return None
+    return cleaned_dates
