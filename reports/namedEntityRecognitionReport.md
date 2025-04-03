@@ -158,13 +158,18 @@ What can SpaCY tell us about our haunted places?
 
 In Conclusion SpaCy entities tell us a lot about our dataset. 
 
-- **Storytelling** - More in depth labels like **PERSON** and **ORG** tell us what the important figures are across our dataset
-- **Improved Parsing** - SpaCY entities revealed edge cases to our previous methods in A1. I document the changes in the codebook below.:
+- **Storytelling** - More in depth labels like **PERSON** and **ORG** tell us what the important figures are across our dataset.
+
+- **Improved Parsing** - SpaCY entities revealed edge cases to our previous methods in A1. I document the changes in the [codebook](../notebooks/1.09-dg-hpv2-named_entities.ipynb).
+
 - **Visualize our Data** - Histograms below are a cool way to visualize what author's believe are the most relevant entities for a haunted place. 
   - **DATE** , **TIME**, **FAC** are the most relevant to a haunted place. 
 
-
-
+- **Keyboard Warrior** :musical_keyboard: - Common dates like **March 2008** and **June 2008** revealed a spur of updates made to the dataset. **Updates appear to be from a single,opinionated writer.**
+  - The majority of updates are **corrections** removing haunted places or **discouraging** people from entering:
+    - 2343 ~ _"June 2008 Removed. No Murder has happened here."_
+    - 1589 ~ _"May 2008 Update – The Statue of Jesus to even exist is questionable._"
+    - 1424 ~ _"...March 2008 Update – up until the 1870s muskets did not use brass shells, but paper cartridges with black powder or just black powder with a ball. So brass shells would have nothing to do with the Revolutionary War."_
 
 ---
 
@@ -192,7 +197,7 @@ How do the **"DATE"** entities improve upon our existing **"Haunted_Places_Date"
 
 ---
 
-##### 🧭 Adding Context to Haunted Places
+#### 🧭 Adding Context to Haunted Places
 - SpaCy recognizes the following:
   - **Seasons** — e.g., `("Winter", 13)`, `("Summer", 55)`
   - **Holidays** — e.g., `("Halloween", 82)`, `("Christmas", 14)`
@@ -201,7 +206,7 @@ How do the **"DATE"** entities improve upon our existing **"Haunted_Places_Date"
 
 ---
 
-##### 🔧 Improving `extract_dates` from Assignment 1
+#### 🔧 Improving `extract_dates` from Assignment 1
 
 - **extract_dates from assignment 1** only captured **45%** of the top 100 most common "DATE" entities. Of these entities, we missed:
 
@@ -224,7 +229,7 @@ All of these improvements were compiled into the new **`extract_dates`** functio
 ./dsci_550_a1/parsingFunctions.py
 ```
 
-##### 📝 Conclusion
+#### 📝 Conclusion
 
 | Method              | Coverage of top 100 entities | Total Coverage |
 |:---------------------|------------------------------|----------------:|
@@ -237,7 +242,8 @@ In Conclusion SpaCy the "DATE" entities:
     - After improvements, `extract_dates` captures **67%** of the top 100 most common "DATE" entities
     - Overall, `extract_dates` now covers **41.17%** of all "DATE" entities
 - **contextualize the timeline of a haunted place**: 
-    - Entities like "the next day" provide relative temporal information.
+    - Entities like "the next day" provide context for the duration of a haunted event.
+      - Did it occur over one day? over multiple? overnight? ..etc. 
 
 ---
 
@@ -247,7 +253,7 @@ In Conclusion SpaCy the "DATE" entities:
 
 ---
 
-##### 🏚️ Added Context to Haunted Place
+#### 🏚️ Added Context to Haunted Place
 
 - Named entities provide context for the **duration of events** that _Time_of_Day_ does not:
   - **"a few minutes later"**
@@ -257,7 +263,7 @@ In Conclusion SpaCy the "DATE" entities:
 
 ---
 
-##### 🛠 Improving upon `classify_time_of_day` from Assignment 1
+#### 🛠 Improving upon `classify_time_of_day` from Assignment 1
 
 - **`classify_time_of_day` from Assignment 1:**
   - Captured **57%** of the top 100 most common "DATE" entities
