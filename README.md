@@ -1,12 +1,17 @@
 # DSCI_550_Assignment_README
 
 ## Group Members
-* Daniel Gottschalk
-* Reha Matai
-* Serafina Smith
-* Mikena Moore
-* Kate Mathew
+<div align="center">
 
+| Name             | Initials |
+|------------------|----------|
+| Daniel Gottschalk| [dg]     |
+| Reha Matai       | [rm]     |
+| Serafina Smith   | [ss]     |
+| Mikena Moore     | [mm]     |
+| Kate Mathew      | [km]     |
+
+</div>
 
 **Quick links:**
   - :point_right: [A1](#dsci_550_a1) 
@@ -280,12 +285,13 @@ We added the following columns to our dataset
 | GeoTopic_Longitudes  | GeoTopic Parser  | [rm](notebooks/1.01-dg-haunted_places-audio_features.ipynb)     |
 | Image_Pointer        | Pandas lol                | dg                                                                |
 | Image_Caption        | Tika Show and Tell                | [ss](notebooks/1.11-ss-hpv2-caption_generation.ipynb)                                                                |
-|         | image caption exploration                | [ss](notebooks/1.12-ss-hpv2-caption_exploration.ipynb)                                                                |
+|         | image caption exploration                | [ss](dsci_550_a2/objectDetection.py)                                                                |
 | Image_Objects        | Tensorflow                | [km, mm](dsci_550_a2/objectDetection.py)                                                                |
 
 ## 5. **Image Generation**
 
-We generated images for indicies 1-8999 using a variety of methods. **Notebooks concerning image generation start with a 5.**
+We generated images for indicies 1-9999 using a variety of methods. `Notebooks/5.*` contain image generation code.
+
 
 | Indicies              | Method           | Author (Link)                                                   |
 |----------------------|------------------|------------------------------------------------------------------|
@@ -308,7 +314,7 @@ Final report is :point_right: [here](reports/TEAM_10_EXTRACT.pdf)
 - Organized GitHub and wrote `README.md`  
 - Extracted named entities using SpaCy  
 - Reported findings on named entities in a [supplementary report](./reports/namedEntityRecognitionReport.md)  
-- Updated `extract_dates` from [assignment_1](dsci_550_a1/parsingFunctions.py) and wrote updated [scripts](dsci_550_a2/parsingFunctions_v2.py) to improve feature coverage  
+- Updated `extract_dates` from [assignment_1](dsci_550_a1/parsingFunctions.py) and wrote updated [`parsingFunctions_v2.py`](dsci_550_a2/parsingFunctions_v2.py) to improve feature coverage  
   - Improved coverage for “haunted_places_date” and “time of day” by 3% and 2% respectively
 - Wrote SpaCY findings and thoughts on SpaCY in final report
 
