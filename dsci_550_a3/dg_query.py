@@ -1,23 +1,56 @@
 from itertools import chain
 from datetime import date
+import regex as re
 
 # Unique Legend Items
 def get_legend_items(df_hp, legend_key):
+    
+    # return True and False if Bool
+    if df_hp[legend_key].dtype == 'bool':
+        return ['True', 'False']
+    
     s = set().union(*df_hp[legend_key].dropna().str.split(' | ').tolist())
+    
     try:
         s.remove('|')  # remove delimiter if it was caught
+    
     except:
         pass
-    return  list(s)
+    return  sorted(list(s))
+
+# String to Datetime
+def parse_date(s): 
+    return date(*map(int, s.split('-'))) 
+# Datetime to String
+def convert_date_str(date):
+    return date.strftime('%Y-%m-%d')
+# Date Range Filter
+def in_date_range(date_list, start_date, end_date):
+    return any(start_date <= date <= end_date for date in date_list)
 
 # Date Range Filter
 def parse_date(s): 
     return date(*map(int, s.split('-'))) 
 
+def convert_date_str(date):
+    return date.strftime('%Y-%m-%d')
+
 def in_date_range(date_list, start_date, end_date):
     return any(start_date <= date <= end_date for date in date_list)
 
-# Main Query Function
+def query_df(query_keys, s):
+
+    # Conver to list if single string is passed
+    if isinstance(query_keys, str):
+        query_keys = [query_keys]
+
+    # Return False if df is null 
+    if s is None:
+        return False
+    # Make logical "or" regex and query
+    query_regex = "|".join(map(re.escape, query_keys))
+    return bool(re.search(query_regex, s))
+
 def filter_hp_df(
     hp_df,
     route_df,
@@ -27,21 +60,24 @@ def filter_hp_df(
     state=None, event_type=None, apparition_type=None, haunt_date_range=None, holiday = None):
     
     filtered_hp_df = hp_df.copy()
-    
+
     if state:
-        filtered_hp_df = filtered_hp_df[filtered_hp_df['State'] == state]
+        filtered_hp_df = filtered_hp_df[filtered_hp_df['State'].apply(lambda s: query_df(state, s))]
     if event_type:
-        filtered_hp_df = filtered_hp_df[filtered_hp_df['Event_Type'].str.contains(event_type, na=False)]
+        filtered_hp_df = filtered_hp_df[filtered_hp_df['Event_Type'].apply(lambda s: query_df(event_type, s))]
     if apparition_type:
-        filtered_hp_df = filtered_hp_df[filtered_hp_df['Apparition_Type'].str.contains(apparition_type, na=False)]
+        filtered_hp_df = filtered_hp_df[filtered_hp_df['Apparition_Type'].apply(lambda s: query_df(apparition_type, s))]
     if haunt_date_range:
         start_date, end_date = map(parse_date, haunt_date_range)
         filtered_hp_df = filtered_hp_df[(filtered_hp_df['Haunted_Places_Date'].apply(lambda x: in_date_range(x, start_date, end_date)))]
     if holiday:
         holiday = parse_date(holiday)
         filtered_hp_df = filtered_hp_df[filtered_hp_df['Haunted_Places_Date'].apply(lambda x: in_date_range(x, holiday, holiday))]
+    
+    filtered_hp_df['Haunted_Places_Date'] = filtered_hp_df['Haunted_Places_Date'].apply(lambda x: [convert_date_str(y) for y in x])
+    filtered_hp_df = filtered_hp_df.astype(str)
 
-    haunted_ids = filtered_hp_df['Haunted_Places_Id'].astype(str).tolist()
+    haunted_ids = filtered_hp_df['Haunted_Places_Id'].tolist()
 
     filtered_flight_intersections = {k: v['Routes'] for k, v in flight_intersections.items() if k in haunted_ids}
     filtered_airport_intersections = {k: v['Airports'] for k, v in airport_intersections.items() if k in haunted_ids}
@@ -64,5 +100,5 @@ def filter_hp_df(
 
     filtered_route_df = route_df.loc[list(relevant_routes)]
     filtered_airport_df = airport_df[airport_df['Id'].isin(relevant_airports) | airport_df['Iata_Code'].isin(relevant_iata_codes)]
-
+    
     return filtered_hp_df, filtered_route_df, filtered_airport_df

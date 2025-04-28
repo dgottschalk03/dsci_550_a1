@@ -1,8 +1,7 @@
 ## Imports ##
 
 # System Path #
-import os
-import sys 
+import os, sys, inspect
 
 # Add dsci_550_a1 to base path. Lets you project functions #
 parent_dir = os.path.abspath(os.path.join(os.getcwd(), ".."))
@@ -38,13 +37,14 @@ import plotly.express as px
 
 # Dash #
 import dash
-from dash import dcc, html, Input, Output
+from dash import dcc, html, Input, Output, ctx
 
 # Helper Functions #
 from dsci_550_a3.dg_viz import hp_interactive_globe
 from dsci_550_a3.dg_query import filter_hp_df, get_legend_items
 from dsci_550_a3.dg_dataLoader import load_all_data
 
+hpimg_directory = '../data/generated_images'
 
 ## Load Data and Define Holidays
 (
@@ -53,7 +53,7 @@ from dsci_550_a3.dg_dataLoader import load_all_data
     airport_df,
     flight_intersections,
     airport_intersections
-) = load_all_data()
+) = load_all_data(hpimg_directory)
 
 holidays = [
     {"label": "New Year's Day", "value": "1000-1-1"},
@@ -80,30 +80,41 @@ app.layout = html.Div([
         html.Div([
             html.Label("Select State:"),
             dcc.Dropdown(
-                id='state-dropdown',
-                options=[{'label': s, 'value': s} for s in sorted(get_legend_items(hp_df, 'State'))],
+                id='State',
+                options=[{'label': s.replace('_', ' '), 'value': s} for s in sorted(get_legend_items(hp_df, 'State'))],
+                multi = True,
                 placeholder="Select a State"
             ),
 
             html.Label("Select Event Type:"),
             dcc.Dropdown(
-                id='event-type-dropdown',
-                options=[{'label': s, 'value': s} for s in sorted(get_legend_items(hp_df, 'Event_Type'))],
+                id='Event_Type',
+                options=[{'label': s.replace('_', ' '), 'value': s} for s in sorted(get_legend_items(hp_df, 'Event_Type'))],
+                multi = True,
                 placeholder="Select Event Type"
             ),
 
             html.Label("Select Apparition Type:"),
             dcc.Dropdown(
-                id='apparition-type-dropdown',
-                options=[{'label': s, 'value': s} for s in sorted(get_legend_items(hp_df, 'Apparition_Type'))],
+                id='Apparition_Type',
+                options=[{'label': s.replace('_', ' '), 'value': s} for s in sorted(get_legend_items(hp_df, 'Apparition_Type'))],
+                multi = True,
                 placeholder="Select Apparition Type"
             ),
             html.Label("Color Locations by: "),
-            dcc.Checklist(
+            dcc.Dropdown(
                 id='legend-toggle',
-                options=[{'label': 'Event Type', 'value': 'Event_Type'}],
-                value=[],
-                labelStyle={'display': 'block'}
+                options=[{'label': 'Event Type', 'value': 'Event_Type'},
+                         {'label': 'Apparition Type', 'value': 'Apparition_Type'},
+                         {'label': 'Time of Day', 'value': 'Time_of_Day'},
+                         {'label': 'Audio Evidence', 'value': 'Audio_Evidence'},
+                         {'label': 'Visual Evidence', 'value': 'Visual_Evidence'},
+                         {'label': 'High Traffic Flight', 'value': 'Flight_HighTraffic'},
+                         {'label': 'Airport Proximity', 'value': 'Aerodrome_Proximity'}
+                ],
+                value='Event_Type',
+                clearable = False,
+                style={'width': '50%'}
             ),   
         ], style={'width': '48%', 'display': 'inline-block', 'verticalAlign': 'top'}),
     
@@ -138,9 +149,9 @@ app.layout = html.Div([
 
 @app.callback(
     Output('geo-plot', 'figure'),
-    Input('state-dropdown', 'value'),
-    Input('event-type-dropdown', 'value'),
-    Input('apparition-type-dropdown', 'value'),
+    Input('State', 'value'),
+    Input('Event_Type', 'value'),
+    Input('Apparition_Type', 'value'),
     Input('haunting-date-range', 'start_date'),
     # Input('year-range-slider', 'value'),
     # Input('specific-date-picker', 'date'),
@@ -148,10 +159,16 @@ app.layout = html.Div([
     Input('legend-toggle', 'value'),
 )
 def update_figure(state, event_type, apparition_type, haunt_date_range, holiday, legend_arg):
-#def update_figure(hp_df, route_df, airport_df, flight_intersections, airport_intersections,state, event_type, apparition_type, haunt_date_range, holiday, legend_arg):
-    if not legend_arg:
-        legend_arg = {'Event_Type': get_legend_items(hp_df, 'Event_Type')} 
     
+    # extract triggered arguments from callback
+    triggered_inputs = {k.split('.')[0]: v for k, v in ctx.inputs.items()}
+    # additional arguments displayed on hover
+    additional_args = [arg for arg, v in triggered_inputs.items() if arg != 'legend-toggle' and v is not None]
+
+    
+    # define coloring
+    legend_arg = {legend_arg: get_legend_items(hp_df, legend_arg)}
+
     filtered_hp_df, filtered_route_df, filtered_airport_df = filter_hp_df(
         hp_df,
         route_df,
@@ -165,8 +182,7 @@ def update_figure(state, event_type, apparition_type, haunt_date_range, holiday,
         holiday,
     )
 
-
-    return hp_interactive_globe(filtered_hp_df, filtered_route_df, filtered_airport_df, legend_arg)
+    return hp_interactive_globe(filtered_hp_df, filtered_route_df, filtered_airport_df, coloring = legend_arg, additional_tags = additional_args)
 
 
 
