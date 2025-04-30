@@ -11,6 +11,9 @@ data/tika_similarity
 notebooks/3.02-dg-us_county-temp.ipynb
 sw.ipynb
 
+# website (for now)
+
+dsci_550_a3/d3-dashboard
 # Ignore git clones and clustering folder
 /clones
 /clustering
