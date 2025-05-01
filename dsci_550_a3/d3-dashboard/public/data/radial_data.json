@@ -1,0 +1,193 @@
+[
+  {
+    "religion": "Maz\u00f3nica",
+    "median_distance": 2196.46,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "bahai",
+    "median_distance": 1072.79,
+    "apparitions": {
+      "Unknown": 81.8,
+      "Spirit": 9.1,
+      "Ghost": 9.1
+    }
+  },
+  {
+    "religion": "baptist",
+    "median_distance": 2381.42,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "biker",
+    "median_distance": 220.85,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "buddhist",
+    "median_distance": 1140.66,
+    "apparitions": {
+      "Unknown": 60.0,
+      "Ghost": 32.0,
+      "Spirit": 6.0,
+      "Multiple Apparitions": 2.0
+    }
+  },
+  {
+    "religion": "christian",
+    "median_distance": 1447.14,
+    "apparitions": {
+      "Unknown": 69.8,
+      "Ghost": 18.7,
+      "Spirit": 5.6,
+      "Multiple Apparitions": 2.8,
+      "Orb": 2.3,
+      "Phantom": 0.5,
+      "Demon": 0.2,
+      "Entity/Light": 0.2,
+      "Other": 0.0
+    }
+  },
+  {
+    "religion": "christian;presbyterian",
+    "median_distance": 8045.07,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "eckankar",
+    "median_distance": 2135.35,
+    "apparitions": {
+      "Multiple Apparitions": 100.0
+    }
+  },
+  {
+    "religion": "hindu",
+    "median_distance": 2563.01,
+    "apparitions": {
+      "Unknown": 85.7,
+      "Ghost": 14.3
+    }
+  },
+  {
+    "religion": "interfaith",
+    "median_distance": 527.34,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "jain",
+    "median_distance": 3400.36,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "jewish",
+    "median_distance": 908.37,
+    "apparitions": {
+      "Unknown": 67.1,
+      "Ghost": 22.4,
+      "Spirit": 4.7,
+      "Orb": 2.4,
+      "Multiple Apparitions": 2.4,
+      "Phantom": 1.2
+    }
+  },
+  {
+    "religion": "multifaith",
+    "median_distance": 732.35,
+    "apparitions": {
+      "Ghost": 46.7,
+      "Unknown": 40.0,
+      "Spirit": 13.3
+    }
+  },
+  {
+    "religion": "muslim",
+    "median_distance": 1250.05,
+    "apparitions": {
+      "Unknown": 74.2,
+      "Ghost": 11.3,
+      "Spirit": 6.5,
+      "Multiple Apparitions": 3.2,
+      "Orb": 3.2,
+      "Phantom": 1.6
+    }
+  },
+  {
+    "religion": "pagan",
+    "median_distance": 1456.97,
+    "apparitions": {
+      "Ghost": 50.0,
+      "Unknown": 50.0
+    }
+  },
+  {
+    "religion": "religious_science",
+    "median_distance": 16097.17,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "scientologist",
+    "median_distance": 1018.28,
+    "apparitions": {
+      "Unknown": 73.3,
+      "Ghost": 13.3,
+      "Spirit": 6.7,
+      "Multiple Apparitions": 6.7
+    }
+  },
+  {
+    "religion": "shinto",
+    "median_distance": 3446.8,
+    "apparitions": {
+      "Unknown": 50.0,
+      "Ghost": 50.0
+    }
+  },
+  {
+    "religion": "sikh",
+    "median_distance": 983.97,
+    "apparitions": {
+      "Ghost": 66.7,
+      "Unknown": 33.3
+    }
+  },
+  {
+    "religion": "spiritualist",
+    "median_distance": 2924.95,
+    "apparitions": {
+      "Unknown": 50.0,
+      "Spirit": 25.0,
+      "Ghost": 25.0
+    }
+  },
+  {
+    "religion": "tenrikyo",
+    "median_distance": 812.93,
+    "apparitions": {
+      "Unknown": 100.0
+    }
+  },
+  {
+    "religion": "unitarian_universalist",
+    "median_distance": 966.81,
+    "apparitions": {
+      "Unknown": 61.1,
+      "Ghost": 16.7,
+      "Spirit": 13.9,
+      "Orb": 8.3
+    }
+  }
+]
