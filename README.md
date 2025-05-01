@@ -386,7 +386,7 @@ Directory Structure the same as A1 and A2. Redundant entries eliminated for read
 |   │   ├── *km-imagecat_indicies.tar.gz | Imagecat Indicies
 |   │   ├── *km-image_space_index.tar.gz | Image Space Indicies
 │   
-├── notebooks*      <- Added Notebooks 
+├── notebooks*      <- Added Notebooks 6.* (used in visualizations)
 │
 ├── references      <- A3 prompt
 │
@@ -434,12 +434,13 @@ We experimented with `Imagecat`, `Imagespace`, `GeoParser`, and `Solr` to index 
 |------------------|------------------------------------------------------------------|
 ImageCat| [km (indicies)](data/processed/km-imagecat_indices.tar.gz)     |                               
 | ImageSpace  | [km (indicies)](data/processed/km-imagespace_index.tar.gz) [km (source code)](dsci_550_a3/ImageSpace)    |
-| Apache Solr  | [ss (indicies)](data/processed/ss-solr_index.tar.gz)     |
+| Apache Solr  | [ss (indicies)](data/processed/ss-solr_index.tar.gz) []    |
 | GeoParser  | [mm (source code)](dsci_550_a3/GeoParser)     |
 
 ### Additional Notebooks
 - [`Solr Stratified Sampling`](notebooks/6.02-ss-solr_data-tsv_to_json.ipynb)
-
+    - [`stratified solr sample`](data/processed/haunted_places_subset_stratified_solr.json)
+- [`bubble map data generation`](notebooks/6.03-rm-generate_json_data.ipynb)
 ## **Report and Summary of Contributions**
 
 Final report is :point_right: [here](reports/TEAM_10_EXTRACT.pdf)

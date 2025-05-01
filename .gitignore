@@ -29,6 +29,8 @@ sw.ipynb
 !data/processed/haunted_places_features_added_v2.tab
 !data/processed/haunted_places_cleaned.tab
 !data/keywords/keywords.json
+!data/processed/haunted_places_subset_stratified_solr.json
+
 # Mac OS-specific storage files
 .DS_Store
 
