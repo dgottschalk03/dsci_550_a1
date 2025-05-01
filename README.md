@@ -16,7 +16,7 @@
 **Quick links:**
   - :point_right: [A1](#dsci_550_a1) 
   - :point_right: [A2](#dsci_550_a2) 
-  - :point_right: [A2](#dsci_550_a3) 
+  - :point_right: [A3](#dsci_550_a3) 
 ---
 # DSCI_550_A1
 
@@ -395,8 +395,8 @@ Directory Structure the same as A1 and A2. Redundant entries eliminated for read
 │
 └── dsci_550_a3*        <- Source code for use in assignment 3.
 │   |
-|   |── d3-dashboard   <- Source code for github pages website (includes json datasets)
-|   |── ImageSpace     <- Scripts for Image Space
+|   |── GeoParser      <- Scripts for GeoParser [mm]
+|   |── ImageSpace     <- Scripts for Image Space [km]
 
 ```
 
@@ -408,9 +408,12 @@ We made 5 visualizations using the final dataset.
 
 The source code for our website can be found in [`d3-dashboard`](https://dgottschalk03.github.io/dsci550_d3_dashboard/). 
 
-- **Website:** :point_right: [githubpages.io]()
+- **Website:** :point_right: [githubpages.io](https://dgottschalk03.github.io/dsci550_d3_dashboard/)
 - **Source Code:** :point_right:  [repo](https://github.com/dgottschalk03/dsci550_d3_dashboard) 
-- **Note**: The `Haunted Flight Map` is hosted on [`pythonanywhere.com`](https://danrobocrop.pythonanywhere.com/)
+- **Note**
+    - The `Haunted Flight Map` is hosted on [`pythonanywhere.com`](https://danrobocrop.pythonanywhere.com/)
+    - There is a [separate repo](https://github.com/dgottschalk03/hauntedFlightsVisualization.git) for this page
+
 
 | Visualization              | Author (link)           | 
 |----------------------|------------------|
@@ -425,13 +428,14 @@ The source code for our website can be found in [`d3-dashboard`](https://dgottsc
 
 ## 5. **Imagecat, Imagespace, Solr**
 
-We experimented with `Imagecat`, `Imagespace`, and `Solr` to index the haunted places dataset and run queries. See report for findings.
+We experimented with `Imagecat`, `Imagespace`, `GeoParser`, and `Solr` to index the haunted places dataset and run queries. See report for findings.
 
-| Method           | Author (Link)                                                   |
+| Method           | Indicies (Link)                                                   |
 |------------------|------------------------------------------------------------------|
-ImageCat| [km](data/processed/km-imagecat_indices.tar.gz)     |
-| ImageSpace  | [km](data/processed/km-imagespace_index.tar.gz)     |
-| Apache Solr  | [ss](data/processed/ss-solr_index.tar.gz)     |
+ImageCat| [km (indicies)](data/processed/km-imagecat_indices.tar.gz)     |                               
+| ImageSpace  | [km (indicies)](data/processed/km-imagespace_index.tar.gz) [km (source code)](dsci_550_a3/ImageSpace)    |
+| Apache Solr  | [ss (indicies)](data/processed/ss-solr_index.tar.gz)     |
+| GeoParser  | [mm (source code)](dsci_550_a3/GeoParser)     |
 
 ### Additional Notebooks
 - [`Solr Stratified Sampling`](notebooks/6.02-ss-solr_data-tsv_to_json.ipynb)
@@ -457,7 +461,14 @@ Final report is :point_right: [here](reports/TEAM_10_EXTRACT.pdf)
 ---
 
 **mm**  
- 
+- Developed the GeoParser to extract and map location data from haunted descriptions, troubleshooting and adapting the original tool to overcome compatibility issues.
+- Generated one D3 visualization (the Circle Packing Map) to explore apparition diversity and frequency across locations, revealing how certain entities cluster by type and region.
+- Ran Apache Solr queries for the project’s Location task, exploring how haunting narratives vary by city and state
+- Wrote portion of the report about apparition types and the circle packing map 
+- Wrote portion of the report explaining the updated GeoParser methodology and findings 
+- Wrote introduction section of the report outlining the assignment’s objectives, tools used, and methods applied.
+- Wrote conclusion section of the report summarizing key insights. 
+
 
 ---
 
