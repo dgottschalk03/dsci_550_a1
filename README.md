@@ -406,17 +406,18 @@ Directory Structure the same as A1 and A2. Redundant entries eliminated for read
 
 We made 5 visualizations using the final dataset. 
 
-The source code for our website can be found in [`d3-dashboard`](/dsci_550_a3/d3-dashboard/). 
+The source code for our website can be found in [`d3-dashboard`](https://dgottschalk03.github.io/dsci550_d3_dashboard/). 
 
-Website is hosted on [githubpages.io]()
+- **Website:** :point_right: [githubpages.io]()
+- **Source Code:** :point_right:  [repo](https://github.com/dgottschalk03/dsci550_d3_dashboard) 
 - **Note**: The `Haunted Flight Map` is hosted on [`pythonanywhere.com`](https://danrobocrop.pythonanywhere.com/)
 
 | Visualization              | Author (link)           | 
 |----------------------|------------------|
-| BubbleMap    | [rm](dsci_550_a3/d3-dashboard/src/pages/bubblemap.jsx)  | 
-| Radial Map       | [ss](dsci_550_a3/d3-dashboard/public/scripts/radial_chart.js)          | 
-| Daylight Scatterplot   | [km](dsci_550_a3/d3-dashboard/public/scripts/scatterplot.js) | 
-| Circl Packing  | [mm](dsci_550_a3/d3-dashboard/public/scripts/circlepacking.js)  | 
+| BubbleMap    | [rm](https://github.com/dgottschalk03/dsci550_d3_dashboard/blob/master/src/pages/BubbleMap.jsx)  | 
+| Radial Map       | [ss](https://github.com/dgottschalk03/dsci550_d3_dashboard/blob/master/public/scripts/radial_chart.js)          | 
+| Daylight Scatterplot   | [km](https://github.com/dgottschalk03/dsci550_d3_dashboard/blob/master/public/scripts/scatterplot.js) | 
+| Circl Packing  | [mm](https://github.com/dgottschalk03/dsci550_d3_dashboard/blob/master/public/scripts/circlepacking.js)  | 
 | Haunted Flight Map        | [dg](https://github.com/dgottschalk03/hauntedFlightsVisualization) |      
 
 ### Additional Notebooks
