@@ -16,7 +16,7 @@
 **Quick links:**
   - :point_right: [A1](#dsci_550_a1) 
   - :point_right: [A2](#dsci_550_a2) 
-
+  - :point_right: [A2](#dsci_550_a3) 
 ---
 # DSCI_550_A1
 
@@ -365,24 +365,20 @@ Final report is :point_right: [here](reports/TEAM_10_EXTRACT.pdf)
 
 ---
 
-# DSCI_550_A2
+# DSCI_550_A3
 
-Geospatial and Image Extraction of the Haunted Places Dataset. Assignment 2 for DSCI_550 SP 25. 
+Graph Data Viz
 
-Due | 4-4-2025
+Due | 5-2-2025
 
-[Reference](./references/DSCI550_HW_EXTRACT_HAUNTED.pdf)
+[Reference](./references/DSCI550_HW_WEBDATAVIZ_HAUNTED.pdf)
 
 ## Project Organization
 
-Directory Structure the same as A1. Redundant entries eliminated for readability. See astriks and annotations for changes and added scripts. 
+Directory Structure the same as A1 and A2. Redundant entries eliminated for readability. See astriks and annotations for changes and added scripts. 
 
 ```
-├── README.md          
-|
-├── clones             
-│
-├── clustering         
+├── README.md              
 │
 ├── data
 │   ├── processed*          
@@ -392,44 +388,39 @@ Directory Structure the same as A1. Redundant entries eliminated for readability
 │   
 ├── notebooks*      <- Added Notebooks 
 │
-├── pyproject.toml     
-│
 ├── references      <- A3 prompt
 │
 ├── reports             
-│   └── figures                 <- Generated graphics and figures to be used in reporting
-|   └── referencedPlaces        <- Indices of "Al Capone" and "Keyboard Warrior". Both referenced in final report.
-|   └── DSCI 550_A2_Report.docx <- Final report 
-│
-├── environment.yml    
-|
-├──  python_3_10.yml    
-│                         
+|   └── DSCI 550_A3_Report.docx <- Final report       
 │
 └── dsci_550_a3*        <- Source code for use in assignment 3.
 │   |
 |   |── d3-dashboard   <- Source code for github pages website (includes json datasets)
-|   |── hpimgsDalleAPI.py       <- Generated images 8000-9999
-|   |── objectDetection.py      <- Implementation of InceptionV3 Object Detection
-|
+|   |── ImageSpace     <- Scripts for Image Space
+
 ```
 
 ## **Project Overview**
 
 ## 1. **Visualizations**
 
-We added the following columns to our dataset
+We made 5 visualizations using the final dataset. 
 
-| Feature              | Method           | Author (Link)                                                   |
-|----------------------|------------------|------------------------------------------------------------------|
-| GeoTopic_Locations   | GeoTopic Parser  | [rm](notebooks/1.01-dg-haunted_places-audio_features.ipynb)     |
-| Named_Entities       | SpACY            | [dg](notebooks/1.09-dg-hpv2-named_entities.ipynb)               |
-| GeoTopic_Latitudes   | GeoTopic Parser  | [rm](notebooks/1.01-dg-haunted_places-audio_features.ipynb)     |
-| GeoTopic_Longitudes  | GeoTopic Parser  | [rm](notebooks/1.01-dg-haunted_places-audio_features.ipynb)     |
-| Image_Pointer        | Pandas lol                | dg                                                                |
-| Image_Caption        | Tika Show and Tell                | [ss](notebooks/1.11-ss-hpv2-caption_generation.ipynb)                                                                |
-|         | image caption exploration                | [ss](dsci_550_a2/objectDetection.py)                                                                |
-| Image_Objects        | Tensorflow                | [km, mm](dsci_550_a2/objectDetection.py)                                                                |
+The source code for our website can be found in [`d3-dashboard`](/dsci_550_a3/d3-dashboard/). 
+
+Website is hosted on [githubpages.io]()
+- **Note**: The `Haunted Flight Map` is hosted on [`pythonanywhere.com`](https://danrobocrop.pythonanywhere.com/)
+
+| Visualization              | Author (link)           | 
+|----------------------|------------------|
+| BubbleMap    | [rm](dsci_550_a3/d3-dashboard/src/pages/bubblemap.jsx)  | 
+| Radial Map       | [ss](dsci_550_a3/d3-dashboard/public/scripts/radial_chart.js)          | 
+| Daylight Scatterplot   | [km](dsci_550_a3/d3-dashboard/public/scripts/scatterplot.js) | 
+| Circl Packing  | [mm](dsci_550_a3/d3-dashboard/public/scripts/circlepacking.js)  | 
+| Haunted Flight Map        | [dg](https://github.com/dgottschalk03/hauntedFlightsVisualization) |      
+
+### Additional Notebooks
+- [`Radial Visualization`](notebooks/6.01-ss-radial_data-tsv_to_json.ipynb)
 
 ## 5. **Imagecat, Imagespace, Solr**
 
@@ -437,10 +428,12 @@ We experimented with `Imagecat`, `Imagespace`, and `Solr` to index the haunted p
 
 | Method           | Author (Link)                                                   |
 |------------------|------------------------------------------------------------------|
-| [km](data/processed/km-imagecat_indices.tar.gz)     |
+ImageCat| [km](data/processed/km-imagecat_indices.tar.gz)     |
 | ImageSpace  | [km](data/processed/km-imagespace_index.tar.gz)     |
 | Apache Solr  | [ss](data/processed/ss-solr_index.tar.gz)     |
 
+### Additional Notebooks
+- [`Solr Stratified Sampling`](notebooks/6.02-ss-solr_data-tsv_to_json.ipynb)
 
 ## **Report and Summary of Contributions**
 
@@ -453,53 +446,30 @@ Final report is :point_right: [here](reports/TEAM_10_EXTRACT.pdf)
 ---
 
 **dg**  
-- Organized GitHub and wrote `README.md`  
-- Extracted named entities using SpaCy  
-- Reported findings on named entities in a [supplementary report](./reports/namedEntityRecognitionReport.md)  
-- Updated `extract_dates` from [assignment_1](dsci_550_a1/parsingFunctions.py) and wrote updated [`parsingFunctions_v2.py`](dsci_550_a2/parsingFunctions_v2.py) to improve feature coverage  
-  - Improved coverage for “haunted_places_date” and “time of day” by 3% and 2% respectively
-- Wrote SpaCY findings and thoughts on SpaCY in final report
+
 
 ---
 
 **km**  
-- Developed an automated prompting system and utilized OpenAI’s DALL·E to generate custom haunted place images (IDs 8000–9999) based on corresponding descriptions and locations  
-- Tested and evaluated Apache Tika’s object detection capabilities using Docker containers  
-- Wrote and iterated on Python scripts to adapt and troubleshoot the Tika Docker-based object detection pipeline, addressing architecture compatibility and performance issues  
-- Implemented and assessed GPT-4 Vision as a secondary, more accurate solution for object recognition and descriptive captioning  
-- Authored the GPT Vision object detection analysis and contributed to the overall object detection methodology section of the final report  
+
 
 ---
 
 **mm**  
-- Implemented object detection solution using the InceptionV3 model  
-- Wrote a script to map each haunted place’s unique ID to its corresponding AI-generated image and detect the top five objects  
-- Managed, organized, and moved the AI-generated haunted images into the correct project directory to match the dataset IDs  
-- Wrote script to add a new column, `detected_objects`, to the dataset containing the top five predicted objects for each image  
-- Analyzed trends in the detected objects, observing frequent detections of architectural elements  
-- Wrote portion of the report about object detection accuracy, trends in detected objects, and the limitations of the models  
-- Wrote portion of the report on Tika Docker and InceptionV3 tools and limitations  
-- Wrote introduction section of the report outlining the assignment’s objectives, tools used, and methods applied  
-- Wrote conclusion section of the report summarizing key insights  
+ 
 
 ---
 
 **rm**  
-- Used the Replicate API to generate images with Stable Diffusion for haunted place IDs 2000–3999 based on the description and apparition type columns  
-- Installed the Lucene Geo Gazetteer, built Tika CLI with GeoTopicParser, and created test files to validate the setup  
-- Wrote script to extract location names from each row of the haunted places dataset using SpaCy’s Named Entity Recognition and Lucene Geo Gazetteer to retrieve latitude and longitude  
-- Successfully started up the Tika server with custom NER model, but was unable to run this on the haunted places dataset due to NaN output errors (GeoTopicParser input parsing issue)  
-- Wrote script to count how often each location name appears in the `Locations` column of the dataset  
-- Wrote script to find what kinds of entities are most associated with top cities  
-- Answered first 2 questions of the report discussing haunted place correlations  
+- Generated one D3 visualization (the Alchohol Bubble Map) to explore the correlation between alcohol-related mortality and supernatural sightings 
+- Ran Apache Solr and executed queries to examine whether time of day affects hauntings in high alchohol-death areas 
+- Built a React-based website using Vite and React Router to organize 5 D3.js visualizations into separate pages 
+- Wrote part of report explaining the insights uncovered from the Bubble Map visualization and Apache Solr query results 
 
 ---
 
 **ss**  
-- Used the Replicate API to generate images with Stable Diffusion for haunted place IDs 0–1999 and 4000–7999 based on the `description` column  
-- Used Tika’s Show and Tell Caption Generator (via the `im2txt-rest-tika` Docker container) to generate image captions for all 9,888 haunted place images  
-- Wrote a Python script to extract the highest-confidence caption per image and appended captions to the dataset (`Image_Caption` column in `haunted_places_features_added_v2.tab`)  
-- Manually reviewed a random sample of 100 captioned images and categorized each as Accurate, Partially Accurate, or Inaccurate  
-- Conducted a word frequency analysis on all 9,888 captions using `CountVectorizer` to find most frequently appearing words  
-- Wrote part of report on accuracy and trends with Tika’s Show and Tell Caption Generator  
-- Wrote part of report on thoughts and experiences using Tika’s Show and Tell Caption Generator  
+- Generated one D3 visualization (the Radial Stacked Bar Chart) to explore the relationship between religious proximity, apparition diversity, and supernatural sightings
+- Created a stratified subset of the haunted places dataset and ran Apache Solr queries to examine how religion, apparition type, location context, and mental health patterns affect haunting narratives
+- Wrote part of the report explaining the insights uncovered from the Radial Bar Chart visualization, linking findings back to earlier clustering and feature extraction work from Assignments 1 and 2
+- Wrote part of the report explaining the insights uncovered from the Solr query results, linking findings back to earlier clustering and feature extraction work from Assignments 1, 2, and the visualization from Assignment 3
