@@ -391,7 +391,8 @@ Directory Structure the same as A1 and A2. Redundant entries eliminated for read
 ├── references      <- A3 prompt
 │
 ├── reports             
-|   └── DSCI 550_A3_Report.docx <- Final report       
+|   └── TEAM_10_DATAVIS.pdf <- Final report      
+|   └── figures*            <- `Haunted Flight Exlporer` screenshots
 │
 └── dsci_550_a3*        <- Source code for use in assignment 3.
 │   |
@@ -452,11 +453,22 @@ Final report is :point_right: [here](reports/TEAM_10_EXTRACT.pdf)
 ---
 
 **dg**  
-
+- Organized Github
+- Created the [`Haunted Flights Explorer`](https://github.com/dgottschalk03/hauntedFlightsVisualization)
+    - [Source Code](https://github.com/dgottschalk03/hauntedFlightsVisualization)
+    - [webpage](https://danrobocrop.pythonanywhere.com/)
+- Published Visualizations on [Github.io](https://dgottschalk03.github.io/dsci550_d3_dashboard/)
+- Prepared all materials for submission
 
 ---
 
 **km**  
+- Generated one D3 visualization (the daylight scatterplot) to explore the correlation between types of haunted events (violent and non violent), the type of apparition, and daylight hours.
+- Wrote a script to create a subset of the haunted places dataset and ran Apache Solr and executed queries to investigate major urban areas and better understand how haunting activity manifests in densely populated settings. Additionally, we looked at how much visual and audio evidence was present in our dataset in correlation to each entry.
+- Ingested 1000 Haunted Places images into ImageSpace using ImageCat and visualized results. Also implemented an Elasticsearch-based alternative pipeline for indexing and search to overcome legacy limitations.
+- Wrote part of the report explaining the insights uncovered from the scatterplot visualization, linking findings back to earlier clustering and feature extraction work from Assignments 1 and 2.
+- Wrote part of the report explaining the insights from Solr query results.
+- Wrote part of the report on ImageSpace findings and our parallel process.
 
 
 ---
