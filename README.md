@@ -416,7 +416,7 @@ The source code for our website can be found in [`d3-dashboard`](https://dgottsc
     - There is a [separate repo](https://github.com/dgottschalk03/hauntedFlightsVisualization.git) for this page
 
 
-| Visualization              | Author (link)           | 
+| Visualization              | Author (source code)           | 
 |----------------------|------------------|
 | BubbleMap    | [rm](https://github.com/dgottschalk03/dsci550_d3_dashboard/blob/master/src/pages/BubbleMap.jsx)  | 
 | Radial Map       | [ss](https://github.com/dgottschalk03/dsci550_d3_dashboard/blob/master/public/scripts/radial_chart.js)          | 
@@ -435,7 +435,7 @@ We experimented with `Imagecat`, `Imagespace`, `GeoParser`, and `Solr` to index 
 |------------------|------------------------------------------------------------------|
 ImageCat| [km (indicies)](data/processed/km-imagecat_indices.tar.gz)     |                               
 | ImageSpace  | [km (indicies)](data/processed/km-imagespace_index.tar.gz) [km (source code)](dsci_550_a3/ImageSpace)    |
-| Apache Solr  | [ss (indicies)](data/processed/ss-solr_index.tar.gz) []    |
+| Apache Solr  | [ss (indicies)](data/processed/ss-solr_index.tar.gz)     |
 | GeoParser  | [mm (source code)](dsci_550_a3/GeoParser)     |
 
 ### Additional Notebooks
@@ -444,7 +444,7 @@ ImageCat| [km (indicies)](data/processed/km-imagecat_indices.tar.gz)     |
 - [`bubble map data generation`](notebooks/6.03-rm-generate_json_data.ipynb)
 ## **Report and Summary of Contributions**
 
-Final report is :point_right: [here](reports/TEAM_10_EXTRACT.pdf)
+Final report is :point_right: [here](reports/TEAM_10_WEBDATAVIZ.pdf)
 
 
 
